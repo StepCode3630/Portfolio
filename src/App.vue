@@ -1,6 +1,7 @@
 <script setup>
 import { onMounted, onUnmounted } from 'vue'
 import Nav from './components/Nav.vue'
+import Home from './components/Home.vue'
 
 const updateBackgroundPosition = () => {
   document.body.style.backgroundPosition = `center ${window.scrollY * 0.4}px`
@@ -23,7 +24,9 @@ onUnmounted(() => {
     </nav>
   </header>
 
-  <main></main>
+  <main>
+    <Home />
+  </main>
 </template>
 
 <style scoped>

@@ -10,6 +10,12 @@
     "wdth" <width>;
 } */
 
+:root {
+  --color-background: var(--vt-c-white);
+  --color-background-soft: var(--vt-c-white-soft);
+  --color-text: #181818;
+  --color-heading: #2c3e50;
+}
 #app {
   max-width: 1280px;
   margin: 0 auto;
@@ -21,21 +27,61 @@
   font-variation-settings: 'wdth' 100;
 }
 
-a {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
-  font-family: 'Noto Serif Display', serif;
-  font-optical-sizing: auto;
-  font-weight: 950;
-  font-style: normal;
-  font-variation-settings: 'wdth' 100;
+p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: var(--color-text);
 }
 
+a {
+  position: relative;
+  text-decoration: none;
+  color: var(--color-text);
+  font-family: 'Noto Serif Display', serif;
+  font-weight: 900;
+  padding: 3px 0;
+  display: inline-block;
+
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
+}
 @media (hover: hover) {
+  /* Ligne animée */
+  a::before,
+  a::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -3px;
+    width: 0;
+    height: 2px;
+  }
+
+  /* Ligne de fond */
+  a::before {
+    background: rgba(0, 0, 0, 0.15);
+    transition: width 0.4s ease;
+  }
+
+  /* Ligne principale */
+  a::after {
+    color: var(--color-heading);
+    transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
   a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
+    color: var(--color-heading);
+    transform: translateY(-2px);
+  }
+
+  a:hover::before {
+    width: 100%;
+  }
+
+  a:hover::after {
+    width: 100%;
   }
 }
 
