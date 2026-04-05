@@ -7,9 +7,9 @@
       <p>Developer full stack</p>
     </div>
     <div>
-      <p>Experience</p>
-      <p>Projects</p>
-      <p>Contact</p>
+      <a href="">Experience</a>
+      <a href="">Projects</a>
+      <a href="">Contact</a>
     </div>
   </div>
 </template>

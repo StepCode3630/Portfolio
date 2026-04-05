@@ -16,9 +16,14 @@ import Nav from './components/Nav.vue'
 header {
   width: 100%;
   height: 80px;
-  background-color: #333;
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
 }
 </style>
