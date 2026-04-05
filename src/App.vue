@@ -1,5 +1,19 @@
 <script setup>
+import { onMounted, onUnmounted } from 'vue'
 import Nav from './components/Nav.vue'
+
+const updateBackgroundPosition = () => {
+  document.body.style.backgroundPosition = `center ${window.scrollY * 0.4}px`
+}
+
+onMounted(() => {
+  updateBackgroundPosition()
+  window.addEventListener('scroll', updateBackgroundPosition, { passive: true })
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', updateBackgroundPosition)
+})
 </script>
 
 <template>
