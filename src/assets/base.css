@@ -60,6 +60,7 @@
 
 body {
   min-height: 100vh;
+  height: 1000vh;
   color: var(--color-text);
   display: flex;
   flex-direction: column;

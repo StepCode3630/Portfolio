@@ -1,7 +1,10 @@
 <script setup></script>
 
 <template>
-  <p>Salut</p>
+  <div>
+    <div></div>
+    <div></div>
+  </div>
 </template>
 
 <style scoped></style>
