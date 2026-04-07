@@ -25,8 +25,7 @@
 .wrapper > div {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 20px;
   margin: 20px;
 }

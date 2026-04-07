@@ -3,18 +3,7 @@ import { onMounted, onUnmounted } from 'vue'
 import Nav from './components/Nav.vue'
 import Home from './components/Home.vue'
 
-const updateBackgroundPosition = () => {
-  document.body.style.backgroundPosition = `center ${window.scrollY * 0.4}px`
-}
-
-onMounted(() => {
-  updateBackgroundPosition()
-  window.addEventListener('scroll', updateBackgroundPosition, { passive: true })
-})
-
-onUnmounted(() => {
-  window.removeEventListener('scroll', updateBackgroundPosition)
-})
+onMounted(() => {})
 </script>
 
 <template>
@@ -25,7 +14,9 @@ onUnmounted(() => {
   </header>
 
   <main>
-    <Home />
+    <div class="home">
+      <Home />
+    </div>
   </main>
 </template>
 
@@ -42,5 +33,11 @@ header {
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.home {
+  margin: 0;
+  padding: 0;
+  margin-top: 130px;
 }
 </style>
