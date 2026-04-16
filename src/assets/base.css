@@ -65,7 +65,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url('/public/fond-montagne.jpg');
+  background-image: url('/src/assets/fond-montagne.jpg');
   background-size: cover;
   background-position: center top;
   transition:
