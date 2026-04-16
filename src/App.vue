@@ -1,9 +1,6 @@
 <script setup>
-import { onMounted, onUnmounted } from 'vue'
 import Nav from './components/Nav.vue'
 import Home from './components/Home.vue'
-
-onMounted(() => {})
 </script>
 
 <template>
@@ -14,9 +11,7 @@ onMounted(() => {})
   </header>
 
   <main>
-    <div class="home">
-      <Home />
-    </div>
+    <Home />
   </main>
 </template>
 
@@ -28,16 +23,10 @@ header {
   top: 0;
   left: 0;
   z-index: 10;
-  background: rgba(255, 255, 255, 0.12);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  background: var(--glass-bg);
+  border-bottom: 1px solid var(--glass-border);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-}
-
-.home {
-  margin: 0;
-  padding: 0;
-  margin-top: 130px;
 }
 </style>
