@@ -34,10 +34,26 @@ p {
     color 0.25s ease,
     transform 0.25s ease;
 }
+
+.wrapper a {
+  position: relative;
+  text-decoration: none;
+  color: var(--color-link-in);
+  font-family: 'Noto Serif Display', serif;
+  font-weight: 900;
+  padding: 3px 0;
+  display: inline-block;
+
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
+}
 @media (hover: hover) {
   /* Ligne animée */
   .stat__link::before,
-  .stat__link::after {
+  .stat__link::after,
+  .wrapper a::before,
+  .wrapper a::after {
     content: '';
     position: absolute;
     left: 50%;
@@ -48,7 +64,8 @@ p {
   }
 
   /* Ligne de fond */
-  .stat__link::before {
+  .stat__link::before,
+  .wrapper a::before {
     background: rgba(0, 0, 0, 0.15);
     transition: width 0.4s ease;
   }
@@ -59,16 +76,28 @@ p {
     transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
+  .wrapper a::after {
+    color: var(--color-link-inv2);
+    transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
   .stat__link:hover {
     color: var(--color-link-exv2);
     transform: translateY(-2px);
   }
 
-  .stat__link:hover::before {
+  .wrapper a:hover {
+    color: var(--color-link-inv2);
+    transform: translateY(-2px);
+  }
+
+  .stat__link:hover::before,
+  .wrapper a:hover::before {
     width: 100%;
   }
 
-  .stat__link:hover::after {
+  .stat__link:hover::after,
+  .wrapper a:hover::after {
     width: 100%;
   }
 }
