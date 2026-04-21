@@ -1,14 +1,37 @@
 <script setup>
+import { computed } from 'vue'
+
 const experiences = [
   {
     title: 'Développement web',
     meta: 'Vue · AdonisJS · API REST',
-    bullets: ['Interfaces rapides et accessibles', 'Back-end propre (auth, validation, DB)', 'Déploiement & CI'],
+    bullets: [
+      'Interfaces rapides et accessibles',
+      'Back-end propre (auth, validation, DB)',
+      'Déploiement & CI',
+    ],
   },
   {
     title: 'Créativité & produit',
     meta: 'UI/UX · Design system',
-    bullets: ['Composants réutilisables', 'Micro-interactions discrètes', 'Pages orientées conversion'],
+    bullets: [
+      'Composants réutilisables',
+      'Micro-interactions discrètes',
+      'Pages orientées conversion',
+    ],
+  },
+]
+
+const framworks = [
+  {
+    title: 'Vue.js',
+    link: 'https://vuejs.org/',
+    type: 'Front',
+  },
+  {
+    title: 'AdonisJS',
+    link: 'https://adonisjs.com/',
+    type: 'Back',
   },
 ]
 
@@ -32,6 +55,10 @@ const projects = [
     href: '#',
   },
 ]
+
+const framworksByType = (typeFw) => {
+  return framworks.filter((fw) => fw.type === typeFw)
+}
 </script>
 
 <template>
@@ -46,8 +73,8 @@ const projects = [
             <span>Développeur</span>
           </h1>
           <p class="subtitle">
-            Salut, je suis Patricny Stepan. Je combine design et code pour construire des expériences
-            web simples, efficaces et agréables.
+            Salut, je suis Patricny Stepan. Je combine design et code pour construire des
+            expériences web simples, efficaces et agréables.
           </p>
 
           <div class="cta">
@@ -58,14 +85,15 @@ const projects = [
 
         <div class="hero__right">
           <div class="stats grid grid--2">
-            <div class="stat card">
-              <p class="stat__value">Front</p>
-              <p class="stat__label">Vue, composants, performance</p>
-            </div>
-            <div class="stat card">
-              <p class="stat__value">Back</p>
-              <p class="stat__label">AdonisJS, API, base de données</p>
-            </div>
+            <ul class="stat card" v-for="typeFmw in ['Front', 'Back']" :key="typeFmw">
+              <li class="stat__value">{{ typeFmw }}</li>
+
+              <li class="stat_fmw" v-for="fw in framworksByType(typeFmw)" :key="fw.title">
+                <p class="stat__label">
+                  <a :href="fw.link">{{ fw.title }}</a>
+                </p>
+              </li>
+            </ul>
           </div>
           <div class="stack card">
             <p class="stack__title">Stack</p>
@@ -99,7 +127,13 @@ const projects = [
         <article v-for="p in projects" :key="p.name" class="card project">
           <div class="project__top">
             <h3 class="card__title">{{ p.name }}</h3>
-            <a v-if="p.href && p.href !== '#'" class="project__link" :href="p.href" target="_blank" rel="noopener">
+            <a
+              v-if="p.href && p.href !== '#'"
+              class="project__link"
+              :href="p.href"
+              target="_blank"
+              rel="noopener"
+            >
               Ouvrir
             </a>
           </div>
@@ -116,23 +150,14 @@ const projects = [
       <div class="grid grid--2">
         <div class="card">
           <p class="contact__lead">
-            Un projet, une mission, ou juste envie d’échanger ? Écris‑moi et je te réponds rapidement.
+            Un projet, une mission, ou juste envie d’échanger ? Écris‑moi et je te réponds
+            rapidement.
           </p>
           <div class="cta">
             <a class="btn btn--primary" href="mailto:hello@example.com">hello@example.com</a>
             <a class="btn" href="#home">Retour en haut</a>
           </div>
         </div>
-
-        <footer class="card footer">
-          <p class="footer__title">Liens</p>
-          <div class="footer__links">
-            <a href="#" target="_blank" rel="noopener">GitHub</a>
-            <a href="#" target="_blank" rel="noopener">LinkedIn</a>
-            <a href="#" target="_blank" rel="noopener">CV</a>
-          </div>
-          <p class="footer__fineprint">© {{ new Date().getFullYear() }} · Patricny Stepan</p>
-        </footer>
       </div>
     </section>
   </div>
@@ -245,6 +270,10 @@ const projects = [
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+}
+
+.stat_fmw {
+  margin-left: 18px;
 }
 
 .chip {
