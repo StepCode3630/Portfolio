@@ -19,6 +19,9 @@
   --vt-c-text-light-2: rgba(60, 60, 60, 0.66);
   --vt-c-text-dark-1: var(--vt-c-white);
   --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
+
+  --vt-c-link-ex: rgba(99, 102, 241, 0.9);
+  --vt-c-link-exv2: rgba(43, 44, 92, 0.9);
 }
 
 /* semantic color variables for this project */
@@ -32,6 +35,8 @@
 
   --color-heading: var(--vt-c-text-light-1);
   --color-text: var(--vt-c-text-light-1);
+  --color-link-ex: var(--vt-c-link-ex);
+  --color-link-exv2: var(--vt-c-link-exv2);
 
   --color-primary: #cca853;
   --color-secondary: #2c3e50;

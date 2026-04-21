@@ -90,7 +90,7 @@ const framworksByType = (typeFw) => {
 
               <li class="stat_fmw" v-for="fw in framworksByType(typeFmw)" :key="fw.title">
                 <p class="stat__label">
-                  <a :href="fw.link">{{ fw.title }}</a>
+                  <a class="stat__link" :href="fw.link">{{ fw.title }}</a>
                 </p>
               </li>
             </ul>
