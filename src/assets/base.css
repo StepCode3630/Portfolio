@@ -19,12 +19,6 @@
   --vt-c-text-light-2: rgba(60, 60, 60, 0.66);
   --vt-c-text-dark-1: var(--vt-c-white);
   --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
-
-  --vt-c-link-ex: rgba(99, 102, 241, 0.9);
-  --vt-c-link-exv2: rgba(43, 44, 92, 0.9);
-
-  --vt-c-link-in: var(--color-text);
-  --vt-c-link-inv2: rgba(99, 99, 99, 0.9);
 }
 
 /* semantic color variables for this project */
@@ -47,6 +41,12 @@
   --color-secondary: #2c3e50;
   --glass-bg: rgba(255, 255, 255, 0.12);
   --glass-border: rgba(255, 255, 255, 0.18);
+
+  --color-black: #211a1d;
+  --color-purple: #6320ee;
+  --color-orange: #ff5e5b;
+  --color-yellow: #ffed66;
+  --color-blue: #C6e0ff;
 
   --section-gap: 160px;
 }
