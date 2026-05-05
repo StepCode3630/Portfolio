@@ -1,65 +1,73 @@
-<script setup></script>
+<script setup>
+const header = [
+  { text: 'About me', href: '#' },
+  { text: 'Skills', href: '#' },
+  { text: 'Work', href: '#' },
+  { text: 'Contact', href: '#' },
+]
+</script>
 
 <template>
-  <div class="wrapper" aria-label="Navigation principale">
-    <div class="brand">
-      <a class="brand__name" href="#home">Patricny Stepan</a>
-      <p class="brand__role">Développeur full‑stack</p>
-    </div>
-    <div class="links">
-      <a href="#experience">Expérience</a>
-      <a href="#projects">Projets</a>
-      <a href="#contact">Contact</a>
-    </div>
+  <div class="wrapper" aria-label="Navigation principal">
+    <nav class="nav">
+      <ul class="nav__list">
+        <li v-for="(item, index) in header" :key="index" class="nav__item">
+          <a :href="item.href" class="nav__link">{{ item.text }}</a>
+        </li>
+      </ul>
+    </nav>
   </div>
 </template>
 
 <style scoped>
 .wrapper {
+  position: fixed;
+  left: 50%;
+  bottom: 10%;
+  transform: translate(-50%, -15%);
+  z-index: 20;
+  width: max-content;
+}
+
+.nav__list {
+  list-style: none;
+  padding: 0.9rem 1.4rem;
+  margin: 0;
+  background: rgba(255, 217, 0, 0.18);
+  border: 1px solid rgba(255, 217, 0, 0.4);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   display: flex;
-  flex-direction: row;
+  gap: 2rem;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
+  border-radius: 100px;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
-.brand {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  padding: 14px 20px;
+.nav__list:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.16);
 }
 
-.brand__name {
-  font-size: 1.05rem;
-  letter-spacing: 0.02em;
+.nav__list a {
+  text-decoration: none;
+  color: var(--color-purple);
+  font-size: 1.25rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  transition:
+    color 0.3s ease,
+    background-color 0.3s ease;
+  border-radius: 100px;
 }
 
-.brand__role {
-  opacity: 0.8;
-  font-size: 0.95rem;
-}
-
-.links {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 18px;
-  padding: 14px 20px;
-  white-space: nowrap;
-}
-
-@media (max-width: 700px) {
-  .wrapper {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
-  }
-  .links {
-    padding-top: 0;
-    flex-wrap: wrap;
-    gap: 12px 16px;
-  }
+.nav__list a:hover {
+  color: var(--color-yellow);
+  background-color: rgba(255, 217, 0, 0.18);
+  border-radius: 100px;
 }
 </style>
