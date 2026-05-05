@@ -35,14 +35,13 @@ const frameworks = [
   },
 ]
 
-const projects = [
-  
-]
-
+const projects = []
 </script>
 
 <template>
- 
+  <div class="home"">
+
+  </div>
 </template>
 
 <style scoped>

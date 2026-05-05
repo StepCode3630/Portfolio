@@ -9,24 +9,17 @@ import Home from './components/Home.vue'
       <Nav />
     </nav>
   </header>
-
-  <main>
+  <div class="spacer" style="height: 100vh">
     <Home />
-  </main>
+  </div>
+  <main></main>
 </template>
 
 <style scoped>
-header {
-  width: 100%;
-  height: 80px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 10;
-  background: var(--glass-bg);
-  border-bottom: 1px solid var(--glass-border);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+.spacer {
+  background-image: url('/src/assets/fond-montagne.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
 }
 </style>

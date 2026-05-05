@@ -46,7 +46,7 @@
   --color-purple: #6320ee;
   --color-orange: #ff5e5b;
   --color-yellow: #ffed66;
-  --color-blue: #C6e0ff;
+  --color-blue: #c6e0ff;
 
   --section-gap: 160px;
 }
@@ -76,17 +76,8 @@
 body {
   min-height: 100vh;
   margin: 0;
-  color: var(--color-text);
-  background-color: var(--color-background);
-  background-image: url('/src/assets/fond-montagne.jpg');
-  background-size: cover;
-  background-position: center top;
-  background-attachment: fixed;
-  transition:
-    color 0.5s,
-    background-color 0.5s;
   line-height: 1.6;
-  
+  font-family: 'Archivo', sans-serif;
 }
 
 html {
