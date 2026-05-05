@@ -1,49 +1,20 @@
-<script setup>
-import { computed } from 'vue'
-
-const experiences = [
-  {
-    title: 'Développement web',
-    meta: 'Vue · AdonisJS · API REST',
-    bullets: [
-      'Interfaces rapides et accessibles',
-      'Back-end propre (auth, validation, DB)',
-      'Déploiement & CI',
-    ],
-  },
-  {
-    title: 'Créativité & produit',
-    meta: 'UI/UX · Design system',
-    bullets: [
-      'Composants réutilisables',
-      'Micro-interactions discrètes',
-      'Pages orientées conversion',
-    ],
-  },
-]
-
-const frameworks = [
-  {
-    title: 'Vue.js',
-    link: 'https://vuejs.org/',
-    type: 'Front',
-  },
-  {
-    title: 'AdonisJS',
-    link: 'https://adonisjs.com/',
-    type: 'Back',
-  },
-]
-
-const projects = []
-</script>
+<script setup></script>
 
 <template>
-  <div class="home"">
-
+  <div class="home">
+    <p class="name">
+      Patricny <br />
+      Stepan
+    </p>
   </div>
 </template>
 
 <style scoped>
-
+.name {
+  font-family: 'Archivo Black', sans-serif;
+  color: var(--color-purple);
+  font-size: 13.7rem;
+  font-weight: 900;
+  transform: translateY(5%) translateX(5%);
+}
 </style>
