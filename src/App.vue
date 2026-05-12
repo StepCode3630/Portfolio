@@ -1,6 +1,7 @@
 <script setup>
 import Nav from './components/Nav.vue'
 import Home from './components/Home.vue'
+import AboutMe from './components/AboutMe.vue'
 </script>
 
 <template>
@@ -11,6 +12,9 @@ import Home from './components/Home.vue'
   </header>
   <div class="spacer">
     <Home />
+  </div>
+  <div>
+    <AboutMe />
   </div>
   <main></main>
 </template>
