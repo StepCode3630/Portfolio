@@ -42,11 +42,11 @@
   --glass-bg: rgba(255, 255, 255, 0.12);
   --glass-border: rgba(255, 255, 255, 0.18);
 
-  --color-black: #211a1d;
-  --color-purple: #6320ee;
-  --color-orange: #ff5e5b;
-  --color-yellow: #ffed66;
-  --color-blue: #c6e0ff;
+  --color-black: #211a1d; /*fond*/
+  --color-purple: #6320ee; /*Accentué #1*/
+  --color-orange: #ff5e5b; /*Accentué #2 /*CTA*/
+  --color-yellow: #ffed66; /*fun*/
+  --color-blue: #c6e0ff; /*texte*/
 
   --section-gap: 160px;
 }
