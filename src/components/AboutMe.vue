@@ -7,7 +7,7 @@ const skills = [
   {
     name: 'HTML',
     type: 'Frontend',
-    icon: 'public/html5-original.svg',
+    icon: html,
     url: 'https://developer.mozilla.org/en-US/docs/Web/HTML',
   },
   {
