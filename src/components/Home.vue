@@ -15,6 +15,7 @@
   color: var(--color-purple);
   font-size: 13.7rem;
   font-weight: 900;
+  width: max-content;
   transform: translateY(5%) translateX(5%);
 }
 </style>

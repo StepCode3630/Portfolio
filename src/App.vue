@@ -9,7 +9,7 @@ import Home from './components/Home.vue'
       <Nav />
     </nav>
   </header>
-  <div class="spacer" style="height: 100vh">
+  <div class="spacer">
     <Home />
   </div>
   <main></main>
@@ -21,5 +21,6 @@ import Home from './components/Home.vue'
   background-size: cover;
   background-position: center top;
   background-attachment: fixed;
+  height: 100vh;
 }
 </style>
