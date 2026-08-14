@@ -7,62 +7,62 @@ const skills = [
   {
     name: 'HTML',
     type: 'Frontend',
-    icon: html,
+    icon: 'src/assets/icons/html5-original.svg',
     url: 'https://developer.mozilla.org/en-US/docs/Web/HTML',
   },
   {
     name: 'CSS',
     type: 'Frontend',
-    icon: 'public/css3-original.svg',
+    icon: 'src/assets/icons/css3-original.svg',
     url: 'https://developer.mozilla.org/en-US/docs/Web/CSS',
   },
   {
     name: 'JavaScript',
     type: 'Frontend',
-    icon: 'public/javascript-seeklogo.svg',
+    icon: 'src/assets/icons/javascript-seeklogo.svg',
     url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
   },
   {
     name: 'Vue.js',
     type: 'Frontend',
-    icon: 'public/vuejs.svg',
+    icon: 'src/assets/icons/vuejs.svg',
     url: 'https://vuejs.org/',
   },
 
   {
     name: 'Express.js',
     type: 'Backend',
-    icon: 'public/express-original.svg',
+    icon: 'src/assets/icons/express-original.svg',
     url: 'https://expressjs.com/',
   },
   {
     name: 'Adonis.js',
     type: 'Backend',
-    icon: 'public/adonisjs-original.svg',
+    icon: 'src/assets/icons/adonisjs-original.svg',
     url: 'https://adonisjs.com/',
   },
   {
     name: 'Node.js',
     type: 'Backend',
-    icon: 'public/nodejs-plain.svg',
+    icon: 'src/assets/icons/nodejs-plain.svg',
     url: 'https://nodejs.org/',
   },
   {
     name: 'C#',
     type: 'Mobile',
-    icon: 'public/csharp-original.svg',
+    icon: 'src/assets/icons/csharp-original.svg',
     url: 'https://docs.microsoft.com/en-us/dotnet/csharp/',
   },
   {
     name: 'mongoDB',
     type: 'Database',
-    icon: 'public/mongodb-original.svg',
+    icon: 'src/assets/icons/mongodb-original.svg',
     url: 'https://www.mongodb.com/',
   },
   {
     name: 'MySQL',
     type: 'Database',
-    icon: 'public/mysql-original.svg',
+    icon: 'src/assets/icons/mysql-original.svg',
     url: 'https://www.mysql.com/',
   },
 ]
@@ -104,6 +104,7 @@ const skillsByType = (type) => {
   min-height: 100vh;
   padding: 8rem 2rem;
 }
+
 .description {
   color: var(--color-blue);
   font-size: 1.35rem;
@@ -112,6 +113,7 @@ const skillsByType = (type) => {
   margin: 0 auto;
   text-align: center;
 }
+
 h2 {
   color: var(--color-yellow);
   font-size: clamp(3rem, 6vw, 5rem);
@@ -119,11 +121,13 @@ h2 {
   margin-bottom: 4rem;
   text-align: center;
 }
+
 h3 {
   color: var(--color-yellow);
   font-size: 2.5rem;
   font-weight: bold;
 }
+
 .iconSkills {
   width: 58px;
   height: 58px;
