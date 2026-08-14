@@ -100,9 +100,7 @@ window.addEventListener('keydown', (e) => {
 
 window.addEventListener('keyup', (e) => {
   if (e.key.toLowerCase() === 'e' && currentSkill) {
-    stopCharging(currentSkill.name)
-
-    unloadProgress(currentSkill.name)
+    noLetCharging(currentSkill)
   }
 })
 
@@ -117,13 +115,11 @@ function hoverSkill(skill) {
 function leaveSkill(skill) {
   const state = loadingStates[skill.name]
 
-  state.hovered = false
-
   stopCharging(skill.name)
 
-  unloadProgress(skill.name)
-
   currentSkill = null
+
+  unloadProgress(skill.name)
 }
 
 function circleStyle(skillName) {
@@ -181,16 +177,22 @@ function stopCharging(skillName) {
   clearInterval(state.interval)
 }
 
+function noLetCharging(skill) {
+  const state = loadingStates[skill.name]
+
+  stopCharging(skill.name)
+
+  currentSkill = null
+
+  unloadProgress(skill.name)
+}
+
 function unloadProgress(skillName) {
   const state = loadingStates[skillName]
 
-  clearInterval(state.interval)
-
-  state.interval = setInterval(() => {
-    // si le joueur recommence à charger
-    // on stop le déchargement
-    if (state.charging) {
-      clearInterval(state.interval)
+  const unload = setInterval(() => {
+    if (state.hovered || state.charging) {
+      clearInterval(unload)
       return
     }
 
@@ -199,10 +201,9 @@ function unloadProgress(skillName) {
     } else {
       state.progress = 0
       state.completed = false
-
-      clearInterval(state.interval)
+      clearInterval(unload)
     }
-  }, 10)
+  }, 15)
 }
 
 function shakeStyle(skillName) {
@@ -225,7 +226,6 @@ function shakeStyle(skillName) {
     </div>
     <div class="skills">
       <h2>My skills</h2>
-      <p id="press">Press E</p>
 
       <div class="typeGrid">
         <div class="skillGrid" v-for="type in skillTypes" :key="type">
@@ -478,9 +478,5 @@ li {
   100% {
     transform: scale(1);
   }
-}
-
-#press {
-  color: white;
 }
 </style>
