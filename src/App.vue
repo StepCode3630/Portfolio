@@ -2,6 +2,7 @@
 import Nav from './components/Nav.vue'
 import Home from './components/Home.vue'
 import AboutMe from './components/AboutMe.vue'
+import MyProjects from './components/MyProjects.vue';
 </script>
 
 <template>
@@ -15,6 +16,7 @@ import AboutMe from './components/AboutMe.vue'
   </div>
   <div>
     <AboutMe />
+    <MyProjects />
   </div>
   <main></main>
 </template>
