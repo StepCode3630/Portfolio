@@ -6,6 +6,8 @@ import { Carousel, Slide, Navigation } from 'vue3-carousel'
 
 const username = 'StepCode3630'
 const pinnedRepos = ref([])
+const loading = ref(false)
+
 async function parseResponse(response) {
     if (response.status === 204) return null
 
@@ -19,7 +21,10 @@ async function parseResponse(response) {
 }
 
 async function getPinnedRepo() {
+    loading.value = true
+
     try {
+
         const response = await fetch(`https://api.kremilly.com/github?user=${username}`);
         console.log(response);
 
@@ -30,10 +35,11 @@ async function getPinnedRepo() {
         console.log(result);
 
         return Array.isArray(result) ? result : (result.data ?? [])
-    }
-    catch (error) {
+    } catch (error) {
         console.error('Error fetching pinned repositories:', error)
         return []
+    } finally {
+        loading.value = false
     }
 }
 
@@ -45,7 +51,6 @@ async function loadProjects() {
     } catch (error) {
         console.error('Error loading projects:', error)
     }
-    pinnedRepos.value = await getPinnedRepo()
 }
 
 onMounted(loadProjects)
@@ -65,12 +70,13 @@ const carouselConfig = {
 </script>
 <template>
 
-    <div v-if="!pinnedRepos.length">
-        <p>Loading projects...</p>
-    </div>
-    <div v-else class="projectsContainer">
+
+    <div class="projectsContainer">
         <h2>My projects</h2>
-        <Carousel v-bind="carouselConfig">
+        <div v-if="loading" class="loading">
+            <p>Loading projects...</p>
+        </div>
+        <Carousel v-else v-bind="carouselConfig">
             <Slide class="slide" v-for="p in pinnedRepos" :key="p.id">
                 <div class="card">
                     <h3>{{ p.name }}</h3>
@@ -125,6 +131,13 @@ h3 {
     color: var(--color-yellow);
     font-size: 2.5rem;
     font-weight: bold;
+}
+
+.loading {
+    color: var(--color-yellow);
+    font-size: 1.5rem;
+    text-align: center;
+    margin-top: 2rem;
 }
 
 .slide {
