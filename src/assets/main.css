@@ -1,1 +1,6 @@
 @import './base.css';
+
+.Container {
+    background-color: var(--color-black);
+    padding: 8rem 2rem;
+}

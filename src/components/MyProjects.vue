@@ -71,7 +71,7 @@ const carouselConfig = {
 <template>
 
 
-    <div class="projectsContainer">
+    <div class="Container">
         <h2>My projects</h2>
         <div v-if="loading" class="loading">
             <p>Loading projects...</p>
@@ -110,12 +110,6 @@ const carouselConfig = {
     --carousel-opacity-near: 0.9;
 
     background-color: #242424;
-}
-
-.projectsContainer {
-    background-color: var(--color-black);
-    min-height: 100vh;
-    padding: 8rem 2rem;
 }
 
 

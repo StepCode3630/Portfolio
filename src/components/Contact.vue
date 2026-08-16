@@ -4,7 +4,7 @@
 <template>
 
 
-    <div class="projectsContainer">
+    <div class="Container">
         <h2>Contact</h2>
         <p>Please feel free to reach out to me through any of the following platforms:</p>
         <br />
@@ -19,13 +19,6 @@
 
 </template>
 <style scoped>
-.projectsContainer {
-    background-color: var(--color-black);
-    min-height: 50vh;
-    padding: 8rem 2rem;
-}
-
-
 h2 {
     color: var(--color-yellow);
     font-size: clamp(3rem, 6vw, 5rem);

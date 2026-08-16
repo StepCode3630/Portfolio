@@ -75,7 +75,7 @@ const skillsByType = (type) => {
 }
 </script>
 <template>
-  <div class="aboutMe">
+  <div class="Container">
     <div class="description">
       <p>{{ Description }}</p>
     </div>
@@ -99,12 +99,6 @@ const skillsByType = (type) => {
   </div>
 </template>
 <style scoped>
-.aboutMe {
-  background-color: var(--color-black);
-  min-height: 100vh;
-  padding: 8rem 2rem;
-}
-
 .description {
   color: var(--color-blue);
   font-size: 1.35rem;
