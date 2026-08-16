@@ -7,25 +7,25 @@ const skills = [
   {
     name: 'HTML',
     type: 'Frontend',
-    icon: 'src/assets/icons/html5-original.svg',
+    icon: 'src/assets/icons/html-original.svg',
     url: 'https://developer.mozilla.org/en-US/docs/Web/HTML',
   },
   {
     name: 'CSS',
     type: 'Frontend',
-    icon: 'src/assets/icons/css3-original.svg',
+    icon: 'src/assets/icons/css-original.svg',
     url: 'https://developer.mozilla.org/en-US/docs/Web/CSS',
   },
   {
     name: 'JavaScript',
     type: 'Frontend',
-    icon: 'src/assets/icons/javascript-seeklogo.svg',
+    icon: 'src/assets/icons/javascript-original.svg',
     url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
   },
   {
     name: 'Vue.js',
     type: 'Frontend',
-    icon: 'src/assets/icons/vuejs.svg',
+    icon: 'src/assets/icons/vuejs-original.svg',
     url: 'https://vuejs.org/',
   },
 
@@ -44,7 +44,7 @@ const skills = [
   {
     name: 'Node.js',
     type: 'Backend',
-    icon: 'src/assets/icons/nodejs-plain.svg',
+    icon: 'src/assets/icons/nodejs-original.svg',
     url: 'https://nodejs.org/',
   },
   {
@@ -166,7 +166,7 @@ h3 {
   padding: 2rem;
   border-radius: 24px;
 
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--color-bgk);
 
   border: 1px solid rgba(255, 255, 255, 0.08);
 
