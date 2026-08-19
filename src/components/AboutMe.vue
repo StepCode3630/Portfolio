@@ -75,11 +75,11 @@ const skillsByType = (type) => {
 }
 </script>
 <template>
-  <div class="Container">
+  <div id="aboutMe" class="Container">
     <div class="description">
       <p>{{ Description }}</p>
     </div>
-    <div class="skills">
+    <div id="skills" class="skills">
       <h2>My skills</h2>
 
       <div class="typeGrid">
@@ -105,6 +105,7 @@ const skillsByType = (type) => {
   line-height: 1.8;
   max-width: 700px;
   margin: 0 auto;
+  margin-top: 5rem;
   text-align: center;
 }
 
@@ -145,7 +146,7 @@ h3 {
 .skills {
   width: 80%;
   margin: 0 auto;
-  padding-top: 5vh;
+  padding-top: 15vh;
 }
 
 .typeGrid {

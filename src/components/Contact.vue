@@ -4,7 +4,7 @@
 <template>
 
 
-    <div class="Container">
+    <div id="contact" class="Container">
         <h2>Contact</h2>
         <p>Please feel free to reach out to me through any of the following platforms:</p>
         <br />

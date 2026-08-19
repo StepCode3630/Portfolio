@@ -71,7 +71,7 @@ const carouselConfig = {
 <template>
 
 
-    <div class="Container">
+    <div id="work" class="Container">
         <h2>My projects</h2>
         <div v-if="loading" class="loading">
             <p>Loading projects...</p>

@@ -9,10 +9,10 @@ import { ScrollSmoother } from "gsap/ScrollSmoother";
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 const header = [
-  { text: 'About me', href: '#' },
-  { text: 'Skills', href: '#' },
-  { text: 'Work', href: '#' },
-  { text: 'Contact', href: '#' },
+  { text: 'About me', href: '#aboutMe' },
+  { text: 'Skills', href: '#skills' },
+  { text: 'My projects', href: '#work' },
+  { text: 'Contact', href: '#contact' },
 ]
 
 
