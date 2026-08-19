@@ -1,5 +1,52 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, onMounted, onBeforeUnmount, nextTick } from 'vue'
+import { gsap } from "gsap";
+
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
+
+gsap.registerPlugin(ScrollTrigger, SplitText);
+gsap.set(".split", { opacity: 0 });
+
+let splitText;
+let tween;
+
+onMounted(async () => {
+  await nextTick();
+
+  const el = document.querySelector(".split");
+  if (!el) return;
+
+  await document.fonts?.ready?.catch(() => { });
+
+  splitText = SplitText.create(el, {
+    type: "words,lines",
+    mask: "lines",
+    linesClass: "line",
+    autoSplit: true
+  });
+
+  gsap.set(el, { opacity: 1 });
+
+  tween = gsap.from(splitText.lines, {
+    yPercent: 120,
+    opacity: 0,
+    stagger: 0.1,
+    ease: "power3.out",
+    scrollTrigger: {
+      trigger: el,
+      start: "top 80%",
+      end: "bottom 20%",
+      scrub: true,
+      markers: true
+    }
+  });
+});
+
+onBeforeUnmount(() => {
+  tween?.kill();
+  splitText?.revert?.();
+});
 
 const Description =
   'Passionate about web and application development, I create modern, dynamic, and user-focused experiences by combining clean design with efficient code.'
@@ -77,7 +124,7 @@ const skillsByType = (type) => {
 <template>
   <div id="aboutMe" class="Container">
     <div class="description">
-      <p>{{ Description }}</p>
+      <p class="split">{{ Description }}</p>
     </div>
     <div id="skills" class="skills">
       <h2>My skills</h2>
@@ -99,7 +146,9 @@ const skillsByType = (type) => {
   </div>
 </template>
 <style scoped>
-.description {
+.split {
+  opacity: 0;
+  will-change: transform;
   color: var(--color-blue);
   font-size: 1.35rem;
   line-height: 1.8;
@@ -107,6 +156,10 @@ const skillsByType = (type) => {
   margin: 0 auto;
   margin-top: 5rem;
   text-align: center;
+}
+
+.split * {
+  will-change: transform;
 }
 
 h2 {
