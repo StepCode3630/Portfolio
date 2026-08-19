@@ -1,14 +1,57 @@
 <script setup>
+import { ref, onMounted, onBeforeUnmount } from 'vue';
+import { gsap } from "gsap";
+
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+// ScrollSmoother requires ScrollTrigger
+import { ScrollSmoother } from "gsap/ScrollSmoother";
+
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
 const header = [
   { text: 'About me', href: '#' },
   { text: 'Skills', href: '#' },
   { text: 'Work', href: '#' },
   { text: 'Contact', href: '#' },
 ]
+
+
+const headerEl = ref(null);
+let ctx;
+const THRESHOLD = -670; // X pixels
+
+
+
+
+
+onMounted(() => {
+  // Animation starting point
+  gsap.set(headerEl.value, { yPercent: 100 });
+
+  ctx = gsap.context(() => {
+    gsap.to(headerEl.value, {
+      yPercent: -1167,
+      duration: 0.35,
+      ease: "power3",
+      scrollTrigger: {
+        trigger: headerEl.value,
+        start: `top+=${THRESHOLD} top`,
+        end: "max",
+        toggleActions: "play none none reverse",
+        markers: true,
+      },
+    });
+  })
+});
+
+onBeforeUnmount(() => {
+  if (ctx)
+    ctx.revert();
+});
 </script>
 
 <template>
-  <div class="wrapper" aria-label="Navigation principal">
+  <div ref="headerEl" class="wrapper" aria-label="Navigation principal">
     <nav class="nav">
       <ul class="nav__list">
         <li v-for="(item, index) in header" :key="index" class="nav__item">
@@ -27,6 +70,7 @@ const header = [
   transform: translate(-50%, -15%);
   z-index: 20;
   width: max-content;
+  will-change: transform;
 }
 
 .nav__list {

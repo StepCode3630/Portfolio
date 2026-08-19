@@ -4,6 +4,8 @@ import Home from './components/Home.vue'
 import AboutMe from './components/AboutMe.vue'
 import MyProjects from './components/MyProjects.vue';
 import Contact from './components/Contact.vue';
+
+
 </script>
 
 <template>
@@ -12,7 +14,7 @@ import Contact from './components/Contact.vue';
       <Nav />
     </nav>
   </header>
-  <div class="spacer">
+  <div id="home" class="spacer">
     <Home />
   </div>
   <div>
