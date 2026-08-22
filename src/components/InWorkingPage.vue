@@ -7,7 +7,7 @@
 
             <p>
                 Wait until the project are finish or contact me on
-                <a href="stepanpatricny@gmail.com">mail
+                <a href="mailto:stepanpatricny@gmail.com">mail
                 </a>
             </p>
 
