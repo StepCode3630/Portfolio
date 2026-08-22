@@ -4,23 +4,15 @@ import Home from './components/Home.vue'
 import AboutMe from './components/AboutMe.vue'
 import MyProjects from './components/MyProjects.vue';
 import Contact from './components/Contact.vue';
+import InWorkingPage from './components/InWorkingPage.vue';
 
 
 </script>
 
 <template>
-  <header>
-    <nav>
-      <Nav />
-    </nav>
-  </header>
-  <div id="home" class="spacer">
-    <Home />
-  </div>
+
   <div>
-    <AboutMe />
-    <MyProjects />
-    <Contact />
+    <InWorkingPage />
   </div>
   <main></main>
 </template>
