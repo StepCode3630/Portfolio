@@ -3,7 +3,7 @@ name: Deploy Vue app to GitHub Pages
 on:
   push:
     branches:
-      - main
+      - workingPage
 
 permissions:
   contents: read
