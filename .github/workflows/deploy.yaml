@@ -1,25 +1,52 @@
-name: Deploy Vue to GitHub Pages
+name: Deploy Vue app to GitHub Pages
 
 on:
   push:
     branches:
       - main
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
 jobs:
-  build-deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Récupérer le code
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v3
+      - name: Installer Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
+          cache: npm
 
-      - run: npm install
-      - run: npm run build
+      - name: Installer les dépendances
+        run: npm ci
 
-      - uses: peaceiris/actions-gh-pages@v3
+      - name: Construire le projet
+        run: npm run build
+
+      - name: Publier l'application
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          path: ./dist
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Déployer sur GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
