@@ -1,12 +1,13 @@
 <script setup>
-import { computed, onMounted, onBeforeUnmount, nextTick } from 'vue'
+import { computed, onMounted, onBeforeUnmount, nextTick, ref } from 'vue'
 import { gsap } from "gsap";
 
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
-gsap.set(".split", { opacity: 0 });
+
+const splitElement = ref(null)
 
 let splitText;
 let tween;
@@ -14,39 +15,50 @@ let tween;
 onMounted(async () => {
   await nextTick();
 
-  const el = document.querySelector(".split");
-  if (!el) return;
 
-  await document.fonts?.ready?.catch(() => { });
+
+  if (document.fonts?.ready)
+    await document.fonts.ready
+
+  const el = splitElement.value
+  if (!el) {
+    console.warn("Élément .split introuvable")
+    return
+  }
+
+  gsap.set(el, { opacity: 1 })
 
   splitText = SplitText.create(el, {
     type: "words,lines",
     mask: "lines",
     linesClass: "line",
-    autoSplit: true
-  });
+    autoSplit: true,
 
-  gsap.set(el, { opacity: 1 });
 
-  tween = gsap.from(splitText.lines, {
-    yPercent: 120,
-    opacity: 0,
-    stagger: 0.1,
-    ease: "power3.out",
-    scrollTrigger: {
-      trigger: el,
-      start: "top 80%",
-      end: "bottom 20%",
-      scrub: true,
-      markers: true
+    onSplit(self) {
+      return gsap.from(self.lines, {
+        yPercent: 120,
+        opacity: 0,
+        stagger: 0.1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 80%",
+          end: "bottom 20%",
+          scrub: true,
+          markers: true
+        }
+      })
     }
-  });
-});
+  })
+  ScrollTrigger.refresh()
+})
 
 onBeforeUnmount(() => {
-  tween?.kill();
-  splitText?.revert?.();
-});
+  splitElement.value && gsap.killTweensOf(splitElement.value)
+  ScrollTrigger.getAll().forEach((trigger) => { if (trigger.trigger === splitElement.value) { trigger.kill() } })
+  splitText?.revert()
+})
 
 const Description =
   'Passionate about web and application development, I create modern, dynamic, and user-focused experiences by combining clean design with efficient code.'
@@ -123,8 +135,11 @@ const skillsByType = (type) => {
 </script>
 <template>
   <div id="aboutMe" class="Container">
+
     <div class="description">
-      <p class="split">{{ Description }}</p>
+
+      <p ref="splitElement" class="split">{{ Description }}</p>
+
     </div>
     <div id="skills" class="skills">
       <h2>My skills</h2>

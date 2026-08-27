@@ -41,7 +41,7 @@
 
 
 p {
-  margin-top: 50px;
+  margin-top: 25px;
   letter-spacing: 12px;
   text-indent: 12px;
   color: var(--color-scroll);
