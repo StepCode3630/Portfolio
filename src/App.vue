@@ -1,6 +1,6 @@
 <script setup>
 import Nav from './components/Nav.vue'
-import Home from './components/Home.vue'
+import Hero from './components/Hero.vue'
 import AboutMe from './components/AboutMe.vue'
 import MyProjects from './components/MyProjects.vue';
 import Contact from './components/Contact.vue';
@@ -40,7 +40,7 @@ onBeforeUnmount(() => { area.value?.removeEventListener("mousemove", handleMouse
     </header>
 
     <div id="home" class="spacer">
-      <Home />
+      <Hero />
     </div>
 
     <div ref="light" class="cursor-effect"></div>
