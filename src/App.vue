@@ -70,7 +70,6 @@ onBeforeUnmount(() => { area.value?.removeEventListener("mousemove", handleMouse
 
 main {
   position: relative;
-  padding-top: 250px;
   background-color: var(--color-black);
 }
 

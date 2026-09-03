@@ -4,18 +4,32 @@ import { gsap } from "gsap";
 
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
+import { Flip } from "gsap/Flip";
+import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
 
-gsap.registerPlugin(ScrollTrigger, SplitText);
+
+gsap.registerPlugin(DrawSVGPlugin, Flip, ScrollTrigger, SplitText);
 
 const splitElement = ref(null)
+const timelineRef = ref(null)
 
 let splitText;
 let tween;
+let animationContext
 
 onMounted(async () => {
   await nextTick();
 
-
+  animationContext = gsap.context(() => {
+    const tl =
+      gsap.timeline({
+        scrollTrigger: { trigger: ".timeline", scrub: true }
+      });
+    tl.from(".line", { scaleY: 0, transformOrigin: "top center", duration: 1.2 });
+    milestones.forEach((ms, i) => {
+      tl.from(ms.querySelector(".dot"), { scale: 0, ease: "back.out(2)" }, 0.3 + i * 0.35);
+    });
+  })
 
   if (document.fonts?.ready)
     await document.fonts.ready
@@ -60,8 +74,19 @@ onBeforeUnmount(() => {
   splitText?.revert()
 })
 
+const milestones = [
+  {
+    date: "2024",
+    title: "Starting ETML",
+  }
+  , {
+    date: "2026",
+    title: "Still in ETML",
+  }
+]
+
 const Description =
-  'Passionate about web and application development, I create modern, dynamic, and user-focused experiences by combining clean design with efficient code.'
+  'I am IT student in 3th year at ETML'
 
 // https://thesvg.org/
 const icon = (name, variant = 'default') =>
@@ -172,6 +197,7 @@ const skillsByType = (type) => {
 </script>
 <template>
   <div id="aboutMe" class="Container">
+    <h2>About me</h2>
 
     <div class="description">
 
@@ -198,6 +224,11 @@ const skillsByType = (type) => {
   </div>
 </template>
 <style scoped>
+#aboutMe {
+  padding: 10rem 0;
+  background-color: var(--color-black);
+}
+
 .split {
   opacity: 0;
   will-change: transform;
