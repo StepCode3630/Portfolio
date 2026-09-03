@@ -62,69 +62,106 @@ onBeforeUnmount(() => {
 
 const Description =
   'Passionate about web and application development, I create modern, dynamic, and user-focused experiences by combining clean design with efficient code.'
+
+// https://thesvg.org/
+const icon = (name, variant = 'default') =>
+  `https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/${name}/${variant}.svg`
+
+
+
 const skills = [
-  {
-    name: 'HTML',
-    type: 'Frontend',
-    icon: 'src/assets/icons/html-original.svg',
-    url: 'https://developer.mozilla.org/en-US/docs/Web/HTML',
-  },
-  {
-    name: 'CSS',
-    type: 'Frontend',
-    icon: 'src/assets/icons/css-original.svg',
-    url: 'https://developer.mozilla.org/en-US/docs/Web/CSS',
-  },
+  // Languages
   {
     name: 'JavaScript',
-    type: 'Frontend',
-    icon: 'src/assets/icons/javascript-original.svg',
+    type: 'Languages',
+    icon: icon('javascript'),
     url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
   },
   {
-    name: 'Vue.js',
-    type: 'Frontend',
-    icon: 'src/assets/icons/vuejs-original.svg',
-    url: 'https://vuejs.org/',
+    name: 'C#',
+    type: 'Languages',
+    icon: icon('csharp'),
+    url: 'https://learn.microsoft.com/en-us/dotnet/csharp/',
   },
 
+  // Frameworks
   {
-    name: 'Express.js',
-    type: 'Backend',
-    icon: 'src/assets/icons/express-original.svg',
-    url: 'https://expressjs.com/',
+    name: 'Vue.js',
+    type: 'Frameworks',
+    icon: icon('vuedotjs'),
+    url: 'https://vuejs.org/',
   },
   {
-    name: 'Adonis.js',
-    type: 'Backend',
-    icon: 'src/assets/icons/adonisjs-original.svg',
+    name: 'AdonisJS',
+    type: 'Frameworks',
+    icon: icon('adonisjs'),
     url: 'https://adonisjs.com/',
   },
   {
-    name: 'Node.js',
-    type: 'Backend',
-    icon: 'src/assets/icons/nodejs-original.svg',
-    url: 'https://nodejs.org/',
+    name: 'Express.js',
+    type: 'Frameworks',
+    icon: icon('expressdotjs'),
+    url: 'https://expressjs.com/',
   },
   {
-    name: 'C#',
-    type: 'Mobile',
-    icon: 'src/assets/icons/csharp-original.svg',
-    url: 'https://docs.microsoft.com/en-us/dotnet/csharp/',
+    name: 'Avalonia UI',
+    type: 'Frameworks',
+    icon: icon('avaloniaui'),
+    url: 'https://avaloniaui.net/',
+  },
+
+
+  // Tools
+  {
+    name: 'Git',
+    type: 'Tools',
+    icon: icon('git'),
+    url: 'https://git-scm.com/',
   },
   {
-    name: 'mongoDB',
-    type: 'Database',
-    icon: 'src/assets/icons/mongodb-original.svg',
-    url: 'https://www.mongodb.com/',
+    name: 'GitHub',
+    type: 'Tools',
+    icon: icon('github', 'dark'),
+    url: 'https://github.com/',
   },
+  {
+    name: 'GitKraken',
+    type: 'Tools',
+    icon: icon('gitkraken'),
+    url: 'https://www.gitkraken.com/',
+  },
+  {
+    name: 'Docker',
+    type: 'Tools',
+    icon: icon('docker'),
+    url: 'https://www.docker.com/',
+  },
+
+  {
+    name: 'Figma',
+    type: 'Tools',
+    icon: icon('figma'),
+    url: 'https://www.figma.com/',
+  },
+
+  // Databases
   {
     name: 'MySQL',
     type: 'Database',
-    icon: 'src/assets/icons/mysql-original.svg',
+    icon: icon('mysql', 'wordmark-dark'),
     url: 'https://www.mysql.com/',
   },
+  {
+    name: 'MongoDB',
+    type: 'Database',
+    icon: icon('mongodb'),
+    url: 'https://www.mongodb.com/',
+  },
 ]
+
+
+
+
 const skillTypes = computed(() => {
   return [...new Set(skills.map((skill) => skill.type))]
 })
@@ -208,7 +245,7 @@ h3 {
 
   opacity: 1;
 
-  filter: drop-shadow(0 0 12px rgba(59, 130, 246, 0.35));
+  filter: drop-shadow(0 0 12px var(--color-blue));
 }
 
 .skills {
@@ -243,7 +280,7 @@ h3 {
 .skillGrid:hover {
   transform: translateY(-6px);
 
-  border-color: rgba(59, 130, 246, 0.5);
+  border-color: var(--color-blue);
 }
 
 .skillGrid ul {
