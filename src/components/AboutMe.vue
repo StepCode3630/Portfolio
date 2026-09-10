@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 import { Flip } from "gsap/Flip";
 import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
+import TimeLine from './TimeLine.vue';
 
 
 gsap.registerPlugin(DrawSVGPlugin, Flip, ScrollTrigger, SplitText);
@@ -20,16 +21,16 @@ let animationContext
 onMounted(async () => {
   await nextTick();
 
-  animationContext = gsap.context(() => {
-    const tl =
-      gsap.timeline({
-        scrollTrigger: { trigger: ".timeline", scrub: true }
-      });
-    tl.from(".line", { scaleY: 0, transformOrigin: "top center", duration: 1.2 });
-    milestones.forEach((ms, i) => {
-      tl.from(ms.querySelector(".dot"), { scale: 0, ease: "back.out(2)" }, 0.3 + i * 0.35);
-    });
-  })
+  // animationContext = gsap.context(() => {
+  //   const tl =
+  //     gsap.timeline({
+  //       scrollTrigger: { trigger: ".timeline", scrub: true }
+  //     });
+  //   tl.from(".line", { scaleY: 0, transformOrigin: "top center", duration: 1.2 });
+  //   milestones.forEach((ms, i) => {
+  //     tl.from(ms.querySelector(".dot"), { scale: 0, ease: "back.out(2)" }, 0.3 + i * 0.35);
+  //   });
+  // })
 
   if (document.fonts?.ready)
     await document.fonts.ready
@@ -74,16 +75,7 @@ onBeforeUnmount(() => {
   splitText?.revert()
 })
 
-const milestones = [
-  {
-    date: "2024",
-    title: "Starting ETML",
-  }
-  , {
-    date: "2026",
-    title: "Still in ETML",
-  }
-]
+
 
 const Description =
   'I am IT student in 3th year at ETML'
@@ -204,6 +196,7 @@ const skillsByType = (type) => {
       <p ref="splitElement" class="split">{{ Description }}</p>
 
     </div>
+    <TimeLine />
     <div id="skills" class="skills">
       <h2>My skills</h2>
 
@@ -230,7 +223,7 @@ const skillsByType = (type) => {
 }
 
 .split {
-  opacity: 0;
+  opacity: 1;
   will-change: transform;
   color: var(--color-blue);
   font-size: 1.35rem;
@@ -257,6 +250,31 @@ h3 {
   color: var(--color-yellow);
   font-size: 2.5rem;
   font-weight: bold;
+}
+
+.timeline {
+  position: relative;
+  width: 5px;
+  margin: 0 auto;
+  background-color: var(--color-orange);
+}
+
+.milestone {
+  position: relative;
+  margin: 4rem 0;
+
+}
+
+.content {
+  position: relative;
+  left: 50px;
+  max-width: 600px;
+}
+
+.content p {
+  color: var(--color-blue);
+  font-size: 1.2rem;
+  line-height: 1.6;
 }
 
 .iconSkills {
