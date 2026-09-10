@@ -1,4 +1,34 @@
-<script setup></script>
+<script setup>
+import { onMounted, ref } from "vue";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const introSection = ref(null);
+const introTitle = ref(null);
+
+
+onMounted(() => {
+  gsap.to(introTitle.value, {
+    opacity: 0,
+    scale: 2,
+    ease: "none",
+    scrollTrigger: {
+      trigger: introSection.value,
+      start: "top top",
+      end: "center top",
+      scrub: 1,
+      pin: true,
+      markers: true
+    }
+  });
+});
+
+</script>
+
+
+
 
 <template>
   <div class="home">
@@ -7,13 +37,13 @@
       <p>Scroll</p>
     </div>
     <div class="homeContent">
-      <div class="homeMe">
+      <section ref="introSection" class="homeMe">
         <h3 class="greeting">Hi, my name is</h3>
-        <h1 class="name">
+        <h1 ref="introTitle" class="name">
           Patricny <br />
           Stepan
         </h1>
-      </div>
+      </section>
       <div>
         <a href="https://github.com/StepCode3630" target="_blank" rel="noopener noreferrer">
           <svg class="icon" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
