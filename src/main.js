@@ -15,4 +15,8 @@ import csharp from './assets/icons/csharp-original.svg'
 import mysql from './assets/icons/mysql-original.svg'
 import mongodb from './assets/icons/mongodb-original.svg'
 
-createApp(App).mount('#app')
+import _titleAnimation from './directives/titleAnimation.js'
+
+const app = createApp(App)
+app.directive('titleAnimation', _titleAnimation)
+app.mount('#app')

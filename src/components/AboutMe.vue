@@ -189,8 +189,11 @@ const skillsByType = (type) => {
 </script>
 <template>
   <div id="aboutMe" class="Container">
-    <h2>About me</h2>
-
+    <section v-title-animation>
+      <div class="title-layer">
+        <h2>About me</h2>
+      </div>
+    </section>
     <div class="description">
 
       <p ref="splitElement" class="split">{{ Description }}</p>
