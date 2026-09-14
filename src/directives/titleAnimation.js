@@ -12,8 +12,9 @@ export default {
       return
     }
 
-    const context = gsap.context(() => {
-      const timeline = gsap.timeline({
+    let timeline
+    const animationContext = gsap.context(() => {
+      timeline = gsap.timeline({
         scrollTrigger: {
           trigger: el,
           start: 'center bottom',
@@ -33,8 +34,9 @@ export default {
       if (imageLayer) {
         timeline.from(imageLayer, { yPercent: 100 }, '<')
       }
-      el._titleAnimation = { context, timeline }
     }, el)
+
+    el._titleAnimation = { context: animationContext, timeline }
   },
   unmounted(el) {
     el._titleAnimation?.context.revert()

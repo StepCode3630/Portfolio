@@ -4,8 +4,14 @@
 <template>
 
 
-    <div id="contact" class="Container">
-        <h2>Contact</h2>
+    <div id="contact" class="Container contactContainer">
+        <section v-title-animation>
+            <div class="title-layer">
+
+                <h2>Contact</h2>
+            </div>
+
+        </section>
         <p>Please feel free to reach out to me through any of the following platforms:</p>
         <br />
         <div class="contact-links">
@@ -50,5 +56,9 @@ p {
     width: 50px;
     height: 50px;
     transition: transform 0.3s ease;
+}
+
+.contactContainer {
+    padding-bottom: 25rem;
 }
 </style>

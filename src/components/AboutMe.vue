@@ -201,7 +201,13 @@ const skillsByType = (type) => {
     </div>
     <TimeLine />
     <div id="skills" class="skills">
-      <h2>My skills</h2>
+      <section v-title-animation>
+        <div class="title-layer">
+
+          <h2>My skills</h2>
+        </div>
+
+      </section>
 
       <div class="typeGrid">
         <div class="skillGrid" v-for="type in skillTypes" :key="type">

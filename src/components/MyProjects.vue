@@ -72,7 +72,13 @@ const carouselConfig = {
 
 
     <div id="work" class="Container">
-        <h2>My projects</h2>
+        <section v-title-animation>
+            <div class="title-layer">
+
+                <h2>My projects</h2>
+            </div>
+
+        </section>
         <div v-if="loading" class="loading">
             <p>Loading projects...</p>
         </div>
@@ -118,6 +124,7 @@ h2 {
     font-size: clamp(3rem, 6vw, 5rem);
     font-weight: 800;
     margin-bottom: 4rem;
+    padding-top: 10rem;
     text-align: center;
 }
 
