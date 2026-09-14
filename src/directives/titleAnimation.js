@@ -20,7 +20,7 @@ export default {
           start: 'center bottom',
           end: 'center top -=150',
           scrub: 1,
-          markers: true,
+          markers: false,
         },
       })
 

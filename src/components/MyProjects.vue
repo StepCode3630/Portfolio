@@ -1,7 +1,18 @@
 <script setup>
-import { ref, onMounted, computed } from 'vue'
+import { ref, nextTick, onMounted, onUnmounted } from 'vue'
 import 'vue3-carousel/carousel.css'
 import { Carousel, Slide, Navigation } from 'vue3-carousel'
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+
+gsap.registerPlugin(ScrollTrigger);
+
+const projectsContainer = ref(null)
+
+let animationContext;
+
+
 
 
 const username = 'StepCode3630'
@@ -47,14 +58,57 @@ async function loadProjects() {
     try {
         const repos = await getPinnedRepo()
         pinnedRepos.value = repos
+        await nextTick()
+        setupCardAnimations()
         console.log('Pinned repositories loaded:', repos)
     } catch (error) {
         console.error('Error loading projects:', error)
     }
 }
 
+function setupCardAnimations() {
+    animationContext?.revert()
+
+    animationContext = gsap.context(() => {
+        const cards = gsap.utils.toArray(".card");
+
+        cards.forEach((card, index) => {
+            gsap.fromTo(
+                card,
+                {
+                    opacity: 0,
+                    y: 70,
+                    scale: 0.94,
+                    rotateX: 8,
+                },
+                {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    rotateX: 0,
+                    duration: 0.85,
+                    delay: (index % 3) * 0.08,
+                    ease: "power3.out",
+                    overwrite: "auto",
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 88%",
+                        once: true,
+                        markers: false,
+                    },
+                }
+            );
+        });
+    }, projectsContainer.value);
+
+
+}
+
 onMounted(loadProjects)
 
+onUnmounted(() => {
+    animationContext?.revert();
+});
 
 
 
@@ -71,7 +125,7 @@ const carouselConfig = {
 <template>
 
 
-    <div id="work" class="Container">
+    <div id="work" class="Container" ref="projectsContainer">
         <section v-title-animation>
             <div class="title-layer">
 
@@ -264,5 +318,14 @@ h3 {
     --vc-nav-width: 40px;
     --vc-nav-height: 40px;
     transition: 0.2 ease all;
+}
+
+.grid {
+    perspective: 1000px;
+}
+
+.card {
+    transform-origin: center bottom;
+    will-change: transform, opacity;
 }
 </style>

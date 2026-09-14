@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted, onBeforeUnmount, nextTick, ref } from 'vue'
+import { computed, onUnmounted, onMounted, onBeforeUnmount, nextTick, ref } from 'vue'
 import { gsap } from "gsap";
 
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -13,10 +13,49 @@ gsap.registerPlugin(DrawSVGPlugin, Flip, ScrollTrigger, SplitText);
 
 const splitElement = ref(null)
 const timelineRef = ref(null)
+const skillsContainer = ref(null)
 
 let splitText;
 let tween;
 let animationContext
+
+function setupCardAnimations() {
+  animationContext?.revert()
+
+  animationContext = gsap.context(() => {
+    const cards = gsap.utils.toArray('.skillGrid')
+    gsap.set(cards, {
+      opacity: 0,
+      y: 50,
+      scale: 0.96,
+      rotateX: 6,
+    });
+
+    ScrollTrigger.batch(cards, {
+      start: "top 88%",
+      once: true,
+      markers: false,
+
+      onEnter: (batch) => {
+        gsap.to(batch, {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          rotateX: 0,
+          duration: 0.5,
+          ease: "power3.out",
+          stagger: {
+            each: 0.12,
+            from: "start",
+          },
+          overwrite: true,
+        });
+      },
+    });
+  }, skillsContainer.value)
+}
+
+onMounted(setupCardAnimations)
 
 onMounted(async () => {
   await nextTick();
@@ -61,13 +100,17 @@ onMounted(async () => {
           start: "top 80%",
           end: "bottom 20%",
           scrub: true,
-          markers: true
+          markers: false
         }
       })
     }
   })
   ScrollTrigger.refresh()
 })
+
+onUnmounted(() => {
+  animationContext?.revert();
+});
 
 onBeforeUnmount(() => {
   splitElement.value && gsap.killTweensOf(splitElement.value)
@@ -353,5 +396,14 @@ h3 {
   padding: 0;
 
   margin: 0;
+}
+
+.grid {
+  perspective: 1000px;
+}
+
+.card {
+  transform-origin: center bottom;
+  will-change: transform, opacity;
 }
 </style>

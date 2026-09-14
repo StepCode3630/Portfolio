@@ -20,7 +20,7 @@ onMounted(() => {
       end: "center top",
       scrub: 1,
       pin: true,
-      markers: true
+      markers: false
     }
   });
 });

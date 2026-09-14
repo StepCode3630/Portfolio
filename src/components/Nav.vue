@@ -39,7 +39,7 @@ onMounted(() => {
         start: `top+=${THRESHOLD} top`,
         end: "max",
         toggleActions: "play none none reverse",
-        markers: true,
+        markers: false,
       },
     });
   })
