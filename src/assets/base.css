@@ -90,3 +90,10 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+/* Empêche le défilement horizontal inattendu */
+html,
+body,
+#app {
+  overflow-x: hidden;
+}
