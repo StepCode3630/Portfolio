@@ -138,6 +138,13 @@ const skills = [
     url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
   },
   {
+    name: 'TypeScript',
+    type: 'Languages',
+    icon: icon('typescript'),
+    url: 'https://www.typescriptlang.org/',
+  },
+
+  {
     name: 'C#',
     type: 'Languages',
     icon: icon('csharp'),
