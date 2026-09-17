@@ -1,4 +1,5 @@
 <script setup>
+import { icon } from '@/icon.js';
 
 </script>
 <template>
@@ -16,8 +17,11 @@
         <br />
         <div class="contact-links">
             <a href="https://discord.com/users/928364949800108082" target="_blank" rel="noopener noreferrer"><img
-                    src="/src/assets/icons/Discord-Symbol-Blurple.svg" alt="Discord" /></a>
-            <a href="mailto:example@email.com"><img src="/src/assets/icons/email-svgrepo-com.svg" alt="Email" /></a>
+                    :src="icon('discord')" alt="Discord" /></a>
+            <a href="mailto:example@email.com"><img :src="icon('proton-mail')" alt="Email" /></a>
+            <a href="https://linkedin.com/in/stepan-patricny" target="_blank" rel="noopener noreferrer">
+                <img :src="icon('linkedin')" alt="LinkedIn" />
+            </a>
         </div>
 
 

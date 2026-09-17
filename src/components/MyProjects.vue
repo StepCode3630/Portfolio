@@ -4,6 +4,7 @@ import 'vue3-carousel/carousel.css'
 import { Carousel, Slide, Navigation } from 'vue3-carousel'
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { icon } from '@/icon.js';
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -145,6 +146,7 @@ const carouselConfig = {
                     <div class="cardLanguages">
                         <div v-for="language in p.languages" :key="language" class="cardFooter">
                             <span class="meta">
+                                <!-- <img :src="icon(language.toLowerCase())" :alt="language" /> -->
                                 {{ language }}
                             </span>
                         </div>

@@ -7,7 +7,7 @@ import { SplitText } from "gsap/SplitText";
 import { Flip } from "gsap/Flip";
 import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
 import TimeLine from './TimeLine.vue';
-
+import { icon } from '@/icon.js';
 
 gsap.registerPlugin(DrawSVGPlugin, Flip, ScrollTrigger, SplitText);
 
@@ -123,9 +123,7 @@ onBeforeUnmount(() => {
 const Description =
   'I am IT student in 3th year at ETML'
 
-// https://thesvg.org/
-const icon = (name, variant = 'default') =>
-  `https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/${name}/${variant}.svg`
+
 
 
 
