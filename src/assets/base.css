@@ -91,6 +91,30 @@ html {
   scroll-behavior: smooth;
 }
 
+
+/* Responsive helpers */
+img,
+picture,
+svg,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --section-gap: 80px;
+  }
+
+  html,
+  body,
+  #app {
+    -webkit-text-size-adjust: 100%;
+    overflow-x: hidden;
+  }
+}
+
 /* Empêche le défilement horizontal inattendu */
 html,
 body,

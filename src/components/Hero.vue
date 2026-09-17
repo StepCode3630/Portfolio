@@ -46,12 +46,14 @@ onMounted(() => {
         </h1>
       </section>
       <div class="socialLinks">
-        <a href="https://github.com/StepCode3630" target="_blank" rel="noopener noreferrer">
-          <img :src="icon('github')" alt="GitHub" class="icon" />
-        </a>
-        <a href="https://linkedin.com/in/stepan-patricny" target="_blank" rel="noopener noreferrer">
-          <img :src="icon('linkedin')" alt="LinkedIn" class="icon" />
-        </a>
+        <div class="socialIcons">
+          <a href="https://github.com/StepCode3630" target="_blank" rel="noopener noreferrer">
+            <img :src="icon('github')" alt="GitHub" class="icon" />
+          </a>
+          <a href="https://linkedin.com/in/stepan-patricny" target="_blank" rel="noopener noreferrer">
+            <img :src="icon('linkedin')" alt="LinkedIn" class="icon" />
+          </a>
+        </div>
         <p class="description">
           I am a passionate <strong>developer</strong> who enjoys building modern, intuitive, and user-friendly
           applications.
@@ -147,6 +149,12 @@ onMounted(() => {
   margin: 10px;
 }
 
+.socialIcons {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
 .mouseWrap {
   display: flex;
   flex-direction: column;
@@ -157,8 +165,79 @@ onMounted(() => {
   margin-bottom: -10rem;
 }
 
+/* Responsive */
+@media (max-width: 1600px) {
+  .name {
+    font-size: 10rem;
+  }
+}
+
+@media (max-width: 1300px) {
+  .name {
+    font-size: 8rem;
+  }
+}
+
+@media (max-width: 1100px) {
+  .name {
+    font-size: 6rem;
+  }
+
+  .homeContent {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mouseWrap {
+    display: none;
+  }
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 800px) {
+  .homeContent {
+    margin-top: 2rem;
+    margin-bottom: 0;
+    padding: 0 1.25rem;
+  }
 
 
+
+  .name {
+    font-size: 4rem;
+    line-height: 1;
+    text-align: center;
+    width: 100%;
+    word-break: break-word;
+  }
+
+  .greeting {
+    font-size: 1.25rem;
+    text-align: center;
+    width: 100%;
+  }
+
+  .description {
+    font-size: 1rem;
+    text-align: center;
+    margin-top: 1rem;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 420px) {
+  .name {
+    font-size: 3rem;
+  }
+
+  .description {
+    font-size: 0.95rem;
+  }
+}
+
+/* Animation scroollll */
 p {
   margin-top: 25px;
   letter-spacing: 12px;

@@ -7,6 +7,7 @@ import Contact from './components/Contact.vue';
 
 import { onMounted, onBeforeUnmount, ref } from "vue"
 import gsap from "gsap"
+import NavDrag from './components/NavDrag.vue';
 const area = ref(null)
 const light = ref(null)
 let xTo
@@ -33,6 +34,7 @@ onBeforeUnmount(() => { area.value?.removeEventListener("mousemove", handleMouse
 
 <template>
   <div ref="area" class="page">
+    <NavDrag />
     <header>
       <nav>
         <Nav />
@@ -44,7 +46,6 @@ onBeforeUnmount(() => { area.value?.removeEventListener("mousemove", handleMouse
     </div>
 
     <div ref="light" class="cursor-effect"></div>
-
     <main>
       <AboutMe />
       <MyProjects />
@@ -66,6 +67,18 @@ onBeforeUnmount(() => { area.value?.removeEventListener("mousemove", handleMouse
   background-size: cover;
   background-position: center top;
   background-attachment: fixed;
+}
+
+@media (max-width: 768px) {
+  .spacer {
+    background-attachment: scroll;
+    background-position: center center;
+    background-size: cover;
+  }
+
+  .cursor-effect {
+    display: none;
+  }
 }
 
 main {
