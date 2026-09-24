@@ -34,9 +34,9 @@ onBeforeUnmount(() => { area.value?.removeEventListener("mousemove", handleMouse
 
 <template>
   <div ref="area" class="page">
-    <NavDrag />
     <header>
       <nav>
+        <NavDrag />
         <Nav />
       </nav>
     </header>

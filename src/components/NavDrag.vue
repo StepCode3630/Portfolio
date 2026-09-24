@@ -10,7 +10,8 @@ let draggableInstance
 
 onMounted(() => {
     draggableInstance = Draggable.create('.flair--4b', {
-        inertia: true
+        inertia: true,
+        bounds: document.getElementById("container")
     })
 })
 
@@ -20,7 +21,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-    <div class="wrapper">
+    <div id="container" class="wrapper">
         <div class="flair flair--4b">Drag me</div>
     </div>
 </template>
@@ -33,7 +34,8 @@ onBeforeUnmount(() => {
     width: 100%;
     height: 100%;
 
-    z-index: 100000;
+    z-index: 10;
+    pointer-events: none;
 }
 
 .flair--4b {
@@ -44,5 +46,6 @@ onBeforeUnmount(() => {
     display: grid;
     place-items: center;
     cursor: grab;
+    pointer-events: auto;
 }
 </style>
