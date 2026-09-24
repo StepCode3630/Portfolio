@@ -115,4 +115,10 @@ onBeforeUnmount(() => {
   background-color: rgba(255, 217, 0, 0.18);
   border-radius: 100px;
 }
+
+@media (max-width: 768px) {
+  .wrapper {
+    display: none;
+  }
+}
 </style>
