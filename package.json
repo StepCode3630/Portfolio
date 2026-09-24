@@ -10,7 +10,10 @@
     "format": "prettier --write --experimental-cli src/"
   },
   "dependencies": {
+    "@headlessui/vue": "^1.7.23",
+    "@tailwindcss/vite": "^4.3.3",
     "gsap": "^3.15.0",
+    "tailwindcss": "^4.3.3",
     "vue": "^3.5.31",
     "vue3-carousel": "^0.17.0"
   },
