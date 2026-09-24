@@ -7,7 +7,6 @@ import Contact from './components/Contact.vue';
 
 import { onMounted, onBeforeUnmount, ref } from "vue"
 import gsap from "gsap"
-import NavDrag from './components/NavDrag.vue';
 const area = ref(null)
 const light = ref(null)
 let xTo
@@ -34,7 +33,6 @@ onBeforeUnmount(() => { area.value?.removeEventListener("mousemove", handleMouse
 
 <template>
   <div ref="area" class="page">
-    <NavDrag />
     <header>
       <nav>
         <Nav />
