@@ -96,7 +96,7 @@ onBeforeUnmount(() => {
 
 .nav__list a {
   text-decoration: none;
-  color: var(--color-purple);
+  color: white;
   font-size: 1.25rem;
   font-weight: 500;
   padding: 0.5rem 1rem;
@@ -110,5 +110,11 @@ onBeforeUnmount(() => {
   color: var(--color-yellow);
   background-color: rgba(255, 217, 0, 0.18);
   border-radius: 100px;
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    display: none;
+  }
 }
 </style>

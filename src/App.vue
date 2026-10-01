@@ -4,6 +4,7 @@ import Hero from './components/Hero.vue'
 import AboutMe from './components/AboutMe.vue'
 import MyProjects from './components/MyProjects.vue';
 import Contact from './components/Contact.vue';
+import BurgerMenu from './components/BurgerMenu.vue';
 
 import { onMounted, onBeforeUnmount, ref } from "vue"
 import gsap from "gsap"
@@ -36,6 +37,7 @@ onBeforeUnmount(() => { area.value?.removeEventListener("mousemove", handleMouse
     <header>
       <nav>
         <Nav />
+        <BurgerMenu />
       </nav>
     </header>
 
