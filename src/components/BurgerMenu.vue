@@ -1,22 +1,55 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { header } from '@/utils/export'
+import { gsap } from 'gsap'
 
 const isOpen = ref(false)
+const burgerContainer = ref(null)
 
 function toggleMenu() {
     isOpen.value = !isOpen.value
+
+    gsap.to('.mobile-menu', {
+        y: isOpen.value ? '-5%' : '20%',
+        duration: 0.3,
+        ease: 'back.out(2)',
+    })
 }
 
 function closeMenu() {
     isOpen.value = false
+
+    gsap.to('.mobile-menu', {
+        y: isOpen.value ? '-20%' : '-5%',
+        duration: 0.3,
+        ease: 'back.out(1)',
+    })
 }
+
+function handleClickOutside(event) {
+    if (!burgerContainer.value) return
+
+    // si le clic est dans le conteneur du burger, on ne ferme pas
+    if (burgerContainer.value.contains(event.target)) {
+        return
+    }
+
+    closeMenu()
+}
+
+onMounted(() => {
+    document.addEventListener('click', handleClickOutside)
+})
+
+onBeforeUnmount(() => {
+    document.removeEventListener('click', handleClickOutside)
+})
 </script>
 
 <template>
-    <div class="burger-container">
+    <div ref="burgerContainer" class="burger-container">
         <button class="burger" :class="{ 'burger--open': isOpen }" type="button" :aria-expanded="isOpen"
-            aria-controls="mobile-menu" aria-label="Ouvrir ou fermer le menu" @click="toggleMenu">
+            aria-controls="mobile-menu" aria-label="Ouvrir ou fermer le menu" @click.stop="toggleMenu">
             <span></span>
             <span></span>
             <span></span>
@@ -43,7 +76,7 @@ function closeMenu() {
 @media (max-width: 768px) {
     .burger-container {
         position: fixed;
-        right: 46%;
+        right: 80%;
         bottom: 1.5rem;
         z-index: 30;
         display: block;
@@ -89,7 +122,6 @@ function closeMenu() {
 
     .mobile-menu {
         position: absolute;
-        right: -100%;
         bottom: 4.5rem;
         display: none;
     }
