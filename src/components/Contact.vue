@@ -18,7 +18,7 @@ import { icon } from '@/icon.js';
         <div class="contact-links">
             <a href="https://discord.com/users/928364949800108082" target="_blank" rel="noopener noreferrer"><img
                     :src="icon('discord')" alt="Discord" /></a>
-            <a href="mailto:example@email.com"><img :src="icon('proton-mail')" alt="Email" /></a>
+            <a href="mailto:stepanpatricny@proton.me"><img :src="icon('proton-mail')" alt="Email" /></a>
             <a href="https://linkedin.com/in/stepan-patricny" target="_blank" rel="noopener noreferrer">
                 <img :src="icon('linkedin')" alt="LinkedIn" />
             </a>
