@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, watch } from 'vue'
 
 const header = [
     { text: 'Hero', href: '#home' },
@@ -9,192 +9,252 @@ const header = [
     { text: 'Contact', href: '#contact' },
 ]
 
-const isOpen = ref(false)
+const props = defineProps({
+    modelValue: {
+        type: Boolean,
+        default: false
+    },
 
-function openModal() {
-    isOpen.value = true
+    width: {
+        type: [String, Number],
+        default: 300
+    },
+
+    right: {
+        type: Boolean,
+        default: false
+    },
+
+    closeOnOverlay: {
+        type: Boolean,
+        default: true
+    }
+})
+
+const emit = defineEmits(['update:modelValue'])
+
+let bodyOldStyle = ''
+let appOldStyle = ''
+
+const menuWidth = computed(() => {
+    const value = String(props.width)
+
+    return value.includes('px') ||
+        value.includes('%') ||
+        value.includes('rem') ||
+        value.includes('vw')
+        ? value
+        : `${value}px`
+})
+
+function openMenu() {
+    emit('update:modelValue', true)
 }
 
-function closeModal() {
-    isOpen.value = false
+function closeMenu() {
+    emit('update:modelValue', false)
 }
+
+function toggleMenu() {
+    emit('update:modelValue', !props.modelValue)
+}
+
+function pushPage() {
+    const pageWrap = document.querySelector('#page-wrap')
+
+    if (!pageWrap) return
+
+    const distance = props.right
+        ? `-${menuWidth.value}`
+        : menuWidth.value
+
+    const angle = props.right ? '-3deg' : '3deg'
+    bodyOldStyle = document.body.getAttribute('style') || ''
+    document.body.style.overflowX = 'hidden'
+
+    pageWrap.style.transform = `translate3d(${distance}, 0, 0) rotateY(${angle})`
+    pageWrap.style.transformOrigin = props.right ? 'left center' : 'right center'
+    pageWrap.style.transformStyle = 'preserve-3d'
+    pageWrap.style.transition = 'all 0.5s ease 0s'
+
+    const appEl = document.querySelector('#app')
+    appOldStyle = appEl ? appEl.getAttribute('style') || '' : ''
+    if (appEl) {
+        appEl.style.perspective = '1500px'
+        appEl.style.overflow = 'hidden'
+    }
+}
+
+function pullPage() {
+    const pageWrap = document.querySelector('#page-wrap')
+
+    if (!pageWrap) return
+
+    pageWrap.style.transition = 'all 0.5s ease 0s'
+    pageWrap.style.transform = 'translate3d(0, 0, 0) rotateY(0deg)'
+    pageWrap.style.transformStyle = ''
+    pageWrap.style.transformOrigin = ''
+
+    const appEl = document.querySelector('#app')
+    if (appEl) appEl.setAttribute('style', appOldStyle)
+    document.body.setAttribute('style', bodyOldStyle)
+}
+
+function handleEscape(event) {
+    if (event.key === 'Escape' && props.modelValue) {
+        closeMenu()
+    }
+}
+
+watch(
+    () => props.modelValue,
+    (isOpen) => {
+        if (isOpen) {
+            pushPage()
+        } else {
+            pullPage()
+        }
+    },
+    { immediate: true }
+)
+
+watch(
+    () => [props.width, props.right],
+    () => {
+        if (props.modelValue) {
+            pushPage()
+        }
+    }
+)
+
+onMounted(() => {
+    document.addEventListener('keydown', handleEscape)
+})
+
+onBeforeUnmount(() => {
+    document.removeEventListener('keydown', handleEscape)
+    pullPage()
+})
 </script>
+
 <template>
-    <div class="mobile-trigger-wrap">
-        <button type="button" class="mobile-trigger" @click="openModal" aria-label="Ouvrir le menu">
-            <span></span>
-            <span></span>
-            <span></span>
+    <aside class="mobile-nav" :class="{
+        'mobile-nav--open': modelValue,
+        'mobile-nav--right': right
+    }" :style="{ width: menuWidth }" aria-label="Navigation principale">
+        <button class="mobile-nav__close" type="button" aria-label="Fermer le menu" @click="closeMenu">
+            ×
         </button>
-    </div>
 
-    <div v-if="isOpen" class="modal-backdrop" @click="closeModal">
-        <div class="modal" @click.stop>
-            <div class="modal__header">
-                <p class="modal__title">Menu</p>
-                <button type="button" class="modal__close" @click="closeModal" aria-label="Close menu">
-                    ×
-                </button>
-            </div>
+        <nav class="mobile-nav__links">
+            <ul class="nav__list">
+                <li v-for="(item, index) in header" :key="index" class="nav__item">
+                    <a :href="item.href" class="nav__link">{{ item.text }}</a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
 
-            <nav class="modal__nav" aria-label="Menu mobile">
-                <ul class="nav__list">
-                    <li v-for="(item, index) in header" :key="index" class="nav__item">
-                        <a :href="item.href" class="nav__link" @click="closeModal">{{ item.text }}</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </div>
+    <Transition name="mobile-nav-overlay">
+        <button v-if="modelValue" class="mobile-nav__overlay" type="button" aria-label="Fermer le menu"
+            @click="closeOnOverlay && closeMenu()" />
+    </Transition>
+
+    <button class="mobile-nav__toggle" type="button" :aria-expanded="modelValue" aria-controls="mobile-navigation"
+        aria-label="Ouvrir le menu" @click="toggleMenu">
+        <span />
+        <span />
+        <span />
+    </button>
 </template>
 
 <style scoped>
-.mobile-trigger-wrap {
+.mobile-nav {
     position: fixed;
-    top: 1rem;
-    left: 1rem;
-    z-index: 50;
-    display: none;
+    z-index: 1001;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    color: white;
+    background: #111;
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
 }
 
-.mobile-trigger {
-    width: 64px;
-    height: 64px;
-    border: 1px solid var(--color-yellow);
-    border-radius: 18px;
-    background: rgba(255, 217, 0, 0.18);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
-    display: grid;
-    place-items: center;
+.mobile-nav--right {
+    right: 0;
+    left: auto;
+    transform: translateX(100%);
+}
+
+.mobile-nav--open {
+    transform: translateX(0);
+}
+
+.mobile-nav__close {
+    align-self: flex-end;
+    border: 0;
+    color: white;
+    background: transparent;
+    font-size: 2rem;
     cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.mobile-trigger:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.16);
+.mobile-nav__links {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 3rem;
 }
 
-.mobile-trigger span {
+.mobile-nav__links a {
+    color: white;
+    font-size: 1.25rem;
+    text-decoration: none;
+}
+
+.mobile-nav__overlay {
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: rgb(0 0 0 / 45%);
+    cursor: pointer;
+}
+
+.mobile-nav__toggle {
+    position: fixed;
+    z-index: 1002;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0.75rem;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+.mobile-nav__toggle span {
     display: block;
     width: 28px;
-    height: 4px;
-    border-radius: 999px;
-    background: var(--color-purple);
-    margin: 4px 0;
+    height: 3px;
+    background: currentColor;
 }
 
-.modal-backdrop {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 5.5rem 1rem 1rem;
-    z-index: 60;
-    animation: fadeIn 0.2s ease;
+.mobile-nav-overlay-enter-active,
+.mobile-nav-overlay-leave-active {
+    transition: opacity 0.3s ease;
 }
 
-.modal {
-    width: min(100%, 420px);
-    background: rgba(11, 13, 20, 0.92);
-    border: 1px solid var(--color-yellow);
-    border-radius: 24px;
-    box-shadow: 0 22px 50px rgba(0, 0, 0, 0.22);
-    padding: 1rem;
-    animation: slideIn 0.25s ease;
-}
-
-.modal__header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 0.75rem;
-}
-
-.modal__title {
-    margin: 0;
-    color: var(--color-yellow);
-    font-size: 1.1rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-}
-
-.modal__close {
-    border: none;
-    background: transparent;
-    color: var(--color-yellow);
-    font-size: 2rem;
-    line-height: 1;
-    cursor: pointer;
-    padding: 0;
-}
-
-.modal__nav {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.nav__list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.nav__item {
-    margin: 0;
-}
-
-.nav__link {
-    display: block;
-    padding: 0.9rem 1rem;
-    border-radius: 999px;
-    color: var(--color-yellow);
-    text-decoration: none;
-    font-weight: 600;
-    background: rgba(255, 217, 0, 0.06);
-    transition: background 0.2s ease, transform 0.2s ease, color 0.2s ease;
-}
-
-.nav__link:hover {
-    background: rgba(255, 217, 0, 0.12);
-    color: #fff7d6;
-    transform: translateX(4px);
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-12px) scale(0.98);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-@media (max-width: 768px) {
-    .mobile-trigger-wrap {
-        display: block;
-    }
+.mobile-nav-overlay-enter-from,
+.mobile-nav-overlay-leave-to {
+    opacity: 0;
 }
 </style>
