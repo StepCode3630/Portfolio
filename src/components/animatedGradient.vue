@@ -49,7 +49,7 @@ onMounted(() => {
             },
         ],
 
-        speed: 0.3,
+        speed: 1,
         horizontalPressure: 4,
         verticalPressure: 4,
         waveFrequencyX: 2,
