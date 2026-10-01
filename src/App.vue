@@ -7,7 +7,6 @@ import Contact from './components/Contact.vue';
 
 import { onMounted, onBeforeUnmount, ref } from "vue"
 import gsap from "gsap"
-import MobileNav from './components/MobileNav.vue';
 const area = ref(null)
 const light = ref(null)
 let xTo
@@ -36,12 +35,7 @@ onBeforeUnmount(() => { area.value?.removeEventListener("mousemove", handleMouse
   <div ref="area" class="page">
     <header>
       <nav>
-        <div class="Nav">
-          <Nav />
-        </div>
-        <div class="MobileNav">
-          <MobileNav />
-        </div>
+        <Nav />
       </nav>
     </header>
 
@@ -83,11 +77,6 @@ onBeforeUnmount(() => { area.value?.removeEventListener("mousemove", handleMouse
   .cursor-effect {
     display: none;
   }
-
-  .Nav {
-    display: none;
-  }
-
 }
 
 main {
