@@ -5,6 +5,7 @@ import AboutMe from './components/AboutMe.vue'
 import MyProjects from './components/MyProjects.vue';
 import Contact from './components/Contact.vue';
 import BurgerMenu from './components/BurgerMenu.vue';
+import AnimatedGradient from './components/animatedGradient.vue';
 
 import { onMounted, onBeforeUnmount, ref } from "vue"
 import gsap from "gsap"
@@ -16,6 +17,8 @@ const handleMouseMove = (event) => {
   xTo(event.clientX)
   yTo(event.clientY)
 }
+
+
 onMounted(() => {
   if (!area.value || !light.value)
     return
@@ -27,9 +30,10 @@ onMounted(() => {
   })
   area.value.addEventListener("mousemove", handleMouseMove)
 
-
 })
-onBeforeUnmount(() => { area.value?.removeEventListener("mousemove", handleMouseMove) })
+onBeforeUnmount(() => {
+  area.value?.removeEventListener("mousemove", handleMouseMove)
+})
 </script>
 
 <template>
@@ -46,7 +50,8 @@ onBeforeUnmount(() => { area.value?.removeEventListener("mousemove", handleMouse
     </div>
 
     <div ref="light" class="cursor-effect"></div>
-    <main>
+    <main id="gradient">
+      <AnimatedGradient />
       <AboutMe />
       <MyProjects />
       <Contact />
@@ -64,6 +69,7 @@ onBeforeUnmount(() => { area.value?.removeEventListener("mousemove", handleMouse
 .spacer {
   min-height: 100vh;
   background-image: url("/src/assets/fond-montagne.jpg");
+  opacity: 0.6;
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
@@ -83,9 +89,9 @@ onBeforeUnmount(() => { area.value?.removeEventListener("mousemove", handleMouse
   }
 }
 
-main {
+#gradient {
   position: relative;
-  background-color: var(--color-black);
+  /* background-color: var(--color-black); */
 }
 
 .cursor-effect {

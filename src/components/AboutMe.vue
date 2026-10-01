@@ -276,7 +276,6 @@ const skillsByType = (type) => {
 <style scoped>
 #aboutMe {
   padding: 10rem 0;
-  background-color: var(--color-black);
 }
 
 .split {
