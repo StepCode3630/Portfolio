@@ -121,6 +121,22 @@ const carouselConfig = {
     pauseAutoplayOnHover: true,
 }
 
+const mediaQuery1000 = window.matchMedia('(max-width: 1000px)')
+const mediaQuery500 = window.matchMedia('(max-width: 500px)')
+
+
+if (mediaQuery1000.matches) {
+    carouselConfig.itemsToShow = 1.8
+    carouselConfig.gap = 15
+}
+
+if (mediaQuery500.matches) {
+    carouselConfig.itemsToShow = 1.4
+    carouselConfig.gap = 10
+}
+
+
+
 
 </script>
 <template>
@@ -329,5 +345,17 @@ h3 {
 .card {
     transform-origin: center bottom;
     will-change: transform, opacity;
+}
+
+@media (max-width: 1000px) {
+    .spacer {
+        background-attachment: scroll;
+        background-position: center center;
+        background-size: cover;
+    }
+
+    .cursor-effect {
+        display: none;
+    }
 }
 </style>

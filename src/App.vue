@@ -66,14 +66,16 @@ onBeforeUnmount(() => { area.value?.removeEventListener("mousemove", handleMouse
   background-image: url("/src/assets/fond-montagne.jpg");
   background-size: cover;
   background-position: center top;
+  background-repeat: no-repeat;
   background-attachment: fixed;
 }
 
 @media (max-width: 768px) {
   .spacer {
     background-attachment: scroll;
-    background-position: center center;
+    background-position: top center;
     background-size: cover;
+    background-repeat: no-repeat;
   }
 
   .cursor-effect {

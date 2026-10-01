@@ -368,6 +368,12 @@ h3 {
   gap: 2rem;
 }
 
+@media (max-width: 768px) {
+  .typeGrid {
+    grid-template-columns: repeat(1, minmax(280px, 1fr));
+  }
+}
+
 .skillGrid {
   padding: 2rem;
   border-radius: 24px;

@@ -93,22 +93,27 @@ onMounted(() => {
   justify-content: center;
   align-items: center;
   text-align: center;
+  gap: 2rem;
   margin-top: 5rem;
   margin-bottom: -10rem;
+  width: min(1200px, 100%);
+  padding: 0 2rem;
 }
 
 .name {
   font-family: 'Archivo Black', sans-serif;
   color: var(--color-purple);
-  font-size: 13.7rem;
+  font-size: clamp(4rem, 8vw, 13.7rem);
   font-weight: 900;
   width: max-content;
+  line-height: 0.9;
+  letter-spacing: -0.06em;
 }
 
 .greeting {
   font-family: 'Archivo', sans-serif;
   color: var(--color-purple);
-  font-size: 2.5rem;
+  font-size: clamp(1.2rem, 2vw, 2.5rem);
   font-weight: 600;
   letter-spacing: 0.1rem;
   text-transform: uppercase;
@@ -118,12 +123,13 @@ onMounted(() => {
   font-family: 'Archivo', sans-serif;
   color: var(--color-black);
   opacity: 0.7;
-  font-size: 1.5rem;
+  font-size: clamp(1rem, 1.5vw, 1.5rem);
   font-weight: 400;
   letter-spacing: 0.05rem;
   text-align: center;
   max-width: 600px;
   margin-top: 2rem;
+  line-height: 1.7;
   animation: 0s ease 0s 1 normal forwards running none;
 }
 
@@ -137,12 +143,17 @@ onMounted(() => {
   height: 50px;
   transition: transform 0.3s ease-in-out;
   opacity: 0.7;
-
 }
 
 .icon:hover {
   transform: scale(1.05);
   transition: transform 0.3s ease-in-out;
+}
+
+.socialLinks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .socialLinks a {
@@ -152,6 +163,8 @@ onMounted(() => {
 .socialIcons {
   display: flex;
   justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
   flex-direction: row;
 }
 
@@ -168,24 +181,30 @@ onMounted(() => {
 /* Responsive */
 @media (max-width: 1600px) {
   .name {
-    font-size: 10rem;
+    font-size: clamp(3.5rem, 7vw, 10rem);
   }
 }
 
 @media (max-width: 1300px) {
   .name {
-    font-size: 8rem;
+    font-size: clamp(3rem, 6vw, 8rem);
   }
 }
 
 @media (max-width: 1100px) {
   .name {
-    font-size: 6rem;
+    font-size: clamp(3rem, 8vw, 6rem);
   }
 
   .homeContent {
     display: flex;
     flex-direction: column;
+    gap: 1rem;
+  }
+
+  .homeMe {
+    align-items: center;
+    text-align: center;
   }
 
   .mouseWrap {
@@ -201,10 +220,8 @@ onMounted(() => {
     padding: 0 1.25rem;
   }
 
-
-
   .name {
-    font-size: 4rem;
+    font-size: clamp(2.8rem, 14vw, 4.5rem);
     line-height: 1;
     text-align: center;
     width: 100%;
@@ -221,19 +238,54 @@ onMounted(() => {
     font-size: 1rem;
     text-align: center;
     margin-top: 1rem;
-    max-width: 90%;
+    max-width: 100%;
     margin-left: auto;
     margin-right: auto;
+    line-height: 1.6;
+  }
+
+  .socialLinks a {
+    margin: 0.5rem;
   }
 }
 
 @media (max-width: 420px) {
+  .homeContent {
+    margin-top: 1rem;
+    margin-bottom: 0;
+    padding: 0 0.75rem;
+  }
+
   .name {
-    font-size: 3rem;
+    font-size: clamp(2.5rem, 18vw, 3.5rem);
+    line-height: 0.95;
+    text-align: center;
+    width: 100%;
+    word-break: break-word;
+  }
+
+  .greeting {
+    font-size: 1.1rem;
+    text-align: center;
+    width: 100%;
+    letter-spacing: 0.08rem;
   }
 
   .description {
-    font-size: 0.95rem;
+    font-size: 1.05rem;
+    text-align: center;
+    margin-top: 1rem;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0.75rem 0.9rem;
+    border-radius: 16px;
+    background: radial-gradient(circle, white 0%, transparent 50%);
+  }
+
+  .icon {
+    width: 28px;
+    height: 28px;
   }
 }
 
