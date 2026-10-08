@@ -121,3 +121,8 @@ body,
 #app {
   overflow-x: hidden;
 }
+
+::selection {
+  background-color: var(--color-yellow);
+  color: var(--color-black);
+}
