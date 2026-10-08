@@ -2,49 +2,21 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { gsap } from "gsap";
 
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-// ScrollSmoother requires ScrollTrigger
-import { ScrollSmoother } from "gsap/ScrollSmoother";
+
 
 import { header } from '@/utils/export';
 
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
-
-
-
-
-const headerEl = ref(null);
-let ctx;
-const THRESHOLD = -670; // X pixels
 
 
 
 
 
-onMounted(() => {
-  // Animation starting point
-  gsap.set(headerEl.value, { yPercent: 100 });
 
-  ctx = gsap.context(() => {
-    gsap.to(headerEl.value, {
-      yPercent: -1167,
-      duration: 0.35,
-      ease: "power3",
-      scrollTrigger: {
-        trigger: headerEl.value,
-        start: `top+=${THRESHOLD} top`,
-        end: "max",
-        toggleActions: "play none none reverse",
-        markers: false,
-      },
-    });
-  })
-});
 
-onBeforeUnmount(() => {
-  if (ctx)
-    ctx.revert();
-});
+
+
+
+
 </script>
 
 <template>
