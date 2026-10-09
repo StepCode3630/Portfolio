@@ -158,6 +158,7 @@ if (mediaQuery500.matches) {
                 <div class="card">
                     <h3>{{ p.name }}</h3>
                     <p class="projectDesc">{{ p.description || 'No description available.' }}</p>
+                    <p class="projectDesc">Commits: {{ p.commits || 'No commit available.' }}</p>
                     <a class="projectLink" :href="p.url" target="_blank" rel="noopener">View project</a>
                     <div class="cardLanguages">
                         <div v-for="language in p.languages" :key="language" class="cardFooter">
