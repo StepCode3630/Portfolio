@@ -17,8 +17,30 @@ let animationContext;
 
 
 const username = 'StepCode3630'
+const projectsStorageKey = `portfolio:projects:${username}`
 const pinnedRepos = ref([])
 const loading = ref(false)
+
+function readCachedProjects() {
+    try {
+        const cachedProjects = sessionStorage.getItem(projectsStorageKey)
+        if (cachedProjects === null) return null
+
+        const repos = JSON.parse(cachedProjects)
+        return Array.isArray(repos) ? repos : null
+    } catch (error) {
+        console.warn('Unable to read cached projects:', error)
+        return null
+    }
+}
+
+function cacheProjects(repos) {
+    try {
+        sessionStorage.setItem(projectsStorageKey, JSON.stringify(repos))
+    } catch (error) {
+        console.warn('Unable to cache projects:', error)
+    }
+}
 
 async function parseResponse(response) {
     if (response.status === 204) return null
@@ -46,10 +68,15 @@ async function getPinnedRepo() {
         const result = await parseResponse(response);
         console.log(result);
 
-        return Array.isArray(result) ? result : (result.data ?? [])
+        const repos = Array.isArray(result) ? result : result?.data
+        if (!Array.isArray(repos)) {
+            throw new Error('Invalid projects response')
+        }
+
+        return repos
     } catch (error) {
         console.error('Error fetching pinned repositories:', error)
-        return []
+        return null
     } finally {
         loading.value = false
     }
@@ -57,8 +84,13 @@ async function getPinnedRepo() {
 
 async function loadProjects() {
     try {
-        const repos = await getPinnedRepo()
-        pinnedRepos.value = repos
+        let repos = readCachedProjects()
+        if (repos === null) {
+            repos = await getPinnedRepo()
+            if (repos !== null) cacheProjects(repos)
+        }
+
+        pinnedRepos.value = repos ?? []
         await nextTick()
         setupCardAnimations()
         console.log('Pinned repositories loaded:', repos)
