@@ -1,38 +1,40 @@
 # Portfolio
 
-This template should help get you started developing with Vue 3 in Vite.
+A personal portfolio built with Vue 3 and Vite.
 
-## Recommended IDE Setup
+## Overview
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+This project is a lightweight portfolio website to present projects, skills, and contact information in a clean and modern layout.
 
-## Recommended Browser Setup
+## Getting started
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+Install dependencies:
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
+```bash
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+Start the development server:
 
-```sh
+```bash
 npm run dev
 ```
 
-### Compile and Minify for Production
+Build for production:
 
-```sh
+```bash
 npm run build
 ```
+
+Preview the production build locally:
+
+```bash
+npm run preview
+```
+
+## Tech stack
+
+- Vue 3
+- Vite
+- GSAP
+- Vue 3 Carousel
