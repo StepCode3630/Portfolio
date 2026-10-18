@@ -54,15 +54,19 @@ onMounted(() => {
             <img :src="icon('linkedin')" alt="LinkedIn" class="icon" />
           </a>
         </div>
-        <p class="description">
-          I am a passionate <strong>developer</strong> who enjoys building modern, intuitive, and user-friendly
-          applications.
-          I work with JavaScript and C#, using technologies such as <strong>Node.js</strong>, <strong>.NET
-            frameworks</strong> and some other frameworks
-          to create web, desktop, and cross-platform solutions. I also use tools like
-          Git, Docker, and Figma throughout my development workflow. I am constantly learning new
-          technologies and improving my skills to build clean, efficient, and meaningful digital experiences.
-        </p>
+        <div class="description">
+          <p class="description-intro">
+            I’m a <strong>developer</strong> building intuitive, user-friendly applications.
+          </p>
+          <p>
+            I work with <strong>JavaScript</strong> and <strong>C#</strong>, using Node.js and .NET
+            to build web, desktop, and cross-platform solutions.
+          </p>
+          <p>
+            Git, Docker, and Figma are part of my workflow. I’m always learning and refining my
+            skills to create clean, efficient digital experiences.
+          </p>
+        </div>
       </div>
 
     </div>
@@ -121,21 +125,35 @@ onMounted(() => {
 
 .description {
   font-family: 'Archivo', sans-serif;
-  color: var(--color-black);
-  opacity: 0.7;
-  font-size: clamp(1rem, 1.5vw, 1.5rem);
+  color: var(--color-purple);
+  font-size: clamp(1rem, 1.1vw, 1.125rem);
   font-weight: 400;
-  letter-spacing: 0.05rem;
-  text-align: center;
-  max-width: 600px;
+  letter-spacing: normal;
+  text-align: left;
+  width: 100%;
+  max-width: 56ch;
   margin-top: 2rem;
-  line-height: 1.7;
-  animation: 0s ease 0s 1 normal forwards running none;
+  padding: clamp(1.1rem, 2vw, 1.75rem);
+  line-height: 1.75;
+  border: 1px solid var(--color-purple);
+  border-radius: 20px;
+  background: var(--color-blue);
+  box-shadow: 0 8px 32px color-mix(in srgb, var(--color-black) 10%, transparent);
+}
+
+.description p+p {
+  margin-top: 0.9rem;
+}
+
+.description-intro {
+  font-size: 1.125em;
+  line-height: 1.5;
+  font-weight: 500;
 }
 
 .description strong {
   color: var(--color-purple);
-  font-weight: 670;
+  font-weight: 700;
 }
 
 .icon {
@@ -154,6 +172,7 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-width: 0;
 }
 
 .socialLinks a {
@@ -235,13 +254,7 @@ onMounted(() => {
   }
 
   .description {
-    font-size: 1rem;
-    text-align: center;
     margin-top: 1rem;
-    max-width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.6;
   }
 
   .socialLinks a {
@@ -271,18 +284,6 @@ onMounted(() => {
     letter-spacing: 0.08rem;
   }
 
-  .description {
-    font-size: 1.05rem;
-    text-align: center;
-    margin-top: 1rem;
-    max-width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0.75rem 0.9rem;
-    border-radius: 16px;
-    background: radial-gradient(circle, white 0%, transparent 50%);
-  }
-
   .icon {
     width: 28px;
     height: 28px;
@@ -290,7 +291,7 @@ onMounted(() => {
 }
 
 /* Animation scroollll */
-p {
+.mouseWrap p {
   margin-top: 25px;
   letter-spacing: 12px;
   text-indent: 12px;
