@@ -13,6 +13,20 @@ const area = ref(null)
 const light = ref(null)
 let xTo
 let yTo
+let darkReaderObserver
+let darkReaderWarningShown = false
+
+const warnAboutDarkReader = () => {
+  if (darkReaderWarningShown || !document.documentElement.hasAttribute('data-darkreader-mode'))
+    return
+
+  darkReaderWarningShown = true
+  darkReaderObserver?.disconnect()
+  window.alert(
+    'Dark Reader is enabled on this page. It can hide the animated background and change the colors. Please disable Dark Reader for this site and reload the page.'
+  )
+}
+
 const handleMouseMove = (event) => {
   xTo(event.clientX)
   yTo(event.clientY)
@@ -20,6 +34,13 @@ const handleMouseMove = (event) => {
 
 
 onMounted(() => {
+  darkReaderObserver = new MutationObserver(warnAboutDarkReader)
+  darkReaderObserver.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-darkreader-mode'],
+  })
+  warnAboutDarkReader()
+
   if (!area.value || !light.value)
     return
   xTo = gsap.quickTo(light.value, "x", {
@@ -32,6 +53,7 @@ onMounted(() => {
 
 })
 onBeforeUnmount(() => {
+  darkReaderObserver?.disconnect()
   area.value?.removeEventListener("mousemove", handleMouseMove)
 })
 </script>
