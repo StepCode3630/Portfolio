@@ -158,7 +158,7 @@ const skills = [
     name: 'PowerShell',
     type: 'Languages',
     icon: icon('powershell'),
-    url: 'https://www.gnu.org/software/bash/manual/bash.html',
+    url: 'https://learn.microsoft.com/en-us/powershell/',
   },
 
   // Frameworks
