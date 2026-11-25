@@ -279,7 +279,7 @@ h3 {
 }
 
 .projectDesc {
-    color: var(--color-text);
+    color: var(--color-blue);
     font-size: 0.95rem;
     line-height: 1.45;
     margin: 0;
@@ -318,7 +318,7 @@ h3 {
     padding: 0.25rem 0.5rem;
     border-radius: 999px;
     font-size: 0.85rem;
-    color: var(--color-text);
+    color: var(--color-blue);
 
 }
 
