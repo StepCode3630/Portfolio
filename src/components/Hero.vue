@@ -76,7 +76,6 @@ onMounted(() => {
 
 <style scoped>
 .home {
-  --color-scroll: var(--color-purple);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -188,6 +187,10 @@ onMounted(() => {
 }
 
 .mouseWrap {
+  --color-scroll: var(--color-blue);
+  --scroll-text: var(--color-yellow);
+  --scroll-surface: var(--color-black);
+  --scroll-border: var(--color-purple);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -293,15 +296,18 @@ onMounted(() => {
 /* Animation scroollll */
 .mouseWrap p {
   margin-top: 25px;
-  letter-spacing: 12px;
-  text-indent: 12px;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid var(--scroll-border);
+  border-radius: 999px;
+  background-color: var(--scroll-surface);
+  letter-spacing: 0.18em;
   color: var(--color-scroll);
   -webkit-animation: colorText 5s ease-out infinite, nudgeText 5s ease-out infinite;
   animation: colorText 5s ease-out infinite, nudgeText 5s ease-out infinite;
 }
 
-.mouse {
-  background: var(--color-background) linear-gradient(transparent 0%, transparent 50%, var(--color-scroll) 50%, var(--color-scroll) 100%);
+.mouseWrap .mouse {
+  background: var(--scroll-border) linear-gradient(transparent 0%, transparent 50%, var(--color-scroll) 50%, var(--color-scroll) 100%);
   position: relative;
   width: 52px;
   height: 88px;
@@ -311,8 +317,8 @@ onMounted(() => {
   animation: colorSlide 5s linear infinite, nudgeMouse 5s ease-out infinite;
 }
 
-.mouse:before,
-.mouse:after {
+.mouseWrap .mouse:before,
+.mouseWrap .mouse:after {
   content: "";
   position: absolute;
   top: 0;
@@ -322,15 +328,15 @@ onMounted(() => {
   margin: auto;
 }
 
-.mouse:before {
+.mouseWrap .mouse:before {
   width: 46px;
   height: 82px;
-  background-color: var(--color-background-mute);
+  background-color: var(--scroll-surface);
   border-radius: 100px;
 }
 
-.mouse:after {
-  background-color: var(--color-yellow);
+.mouseWrap .mouse:after {
+  background-color: var(--scroll-text);
   width: 10px;
   height: 10px;
   border-radius: 100%;
@@ -348,7 +354,7 @@ onMounted(() => {
   }
 
   21% {
-    background-color: var(--color-background-soft);
+    background-color: var(--scroll-border);
   }
 
   29.99% {
@@ -357,7 +363,7 @@ onMounted(() => {
   }
 
   30% {
-    background-color: var(--color-background-soft);
+    background-color: var(--scroll-border);
     background-position: 0% 100%;
   }
 
@@ -366,7 +372,7 @@ onMounted(() => {
   }
 
   51% {
-    background-color: var(--color-background-soft);
+    background-color: var(--scroll-border);
   }
 
   59% {
@@ -375,7 +381,7 @@ onMounted(() => {
   }
 
   60% {
-    background-color: var(--color-background-soft);
+    background-color: var(--scroll-border);
     background-position: 0% 100%;
   }
 
@@ -384,7 +390,7 @@ onMounted(() => {
   }
 
   81% {
-    background-color: var(--color-background-soft);
+    background-color: var(--scroll-border);
   }
 
   90%,
@@ -403,7 +409,7 @@ onMounted(() => {
   }
 
   21% {
-    background-color: var(--color-background-soft);
+    background-color: var(--scroll-border);
   }
 
   29.99% {
@@ -412,7 +418,7 @@ onMounted(() => {
   }
 
   30% {
-    background-color: var(--color-background-soft);
+    background-color: var(--scroll-border);
     background-position: 0% 100%;
   }
 
@@ -421,7 +427,7 @@ onMounted(() => {
   }
 
   51% {
-    background-color: var(--color-background-soft);
+    background-color: var(--scroll-border);
   }
 
   59% {
@@ -430,7 +436,7 @@ onMounted(() => {
   }
 
   60% {
-    background-color: var(--color-background-soft);
+    background-color: var(--scroll-border);
     background-position: 0% 100%;
   }
 
@@ -439,7 +445,7 @@ onMounted(() => {
   }
 
   81% {
-    background-color: var(--color-background-soft);
+    background-color: var(--scroll-border);
   }
 
   90%,
@@ -736,7 +742,7 @@ onMounted(() => {
 
 @-webkit-keyframes colorText {
   21% {
-    color: var(--color-background-soft);
+    color: var(--scroll-text);
   }
 
   30% {
@@ -744,7 +750,7 @@ onMounted(() => {
   }
 
   51% {
-    color: var(--color-background-soft);
+    color: var(--scroll-text);
   }
 
   60% {
@@ -752,7 +758,7 @@ onMounted(() => {
   }
 
   81% {
-    color: var(--color-background-soft);
+    color: var(--scroll-text);
   }
 
   90% {
@@ -762,7 +768,7 @@ onMounted(() => {
 
 @keyframes colorText {
   21% {
-    color: var(--color-background-soft);
+    color: var(--scroll-text);
   }
 
   30% {
@@ -770,7 +776,7 @@ onMounted(() => {
   }
 
   51% {
-    color: var(--color-background-soft);
+    color: var(--scroll-text);
   }
 
   60% {
@@ -778,7 +784,7 @@ onMounted(() => {
   }
 
   81% {
-    color: var(--color-background-soft);
+    color: var(--scroll-text);
   }
 
   90% {
