@@ -148,6 +148,18 @@ const skills = [
     icon: icon('csharp'),
     url: 'https://learn.microsoft.com/en-us/dotnet/csharp/',
   },
+  {
+    name: 'Bash',
+    type: 'Languages',
+    icon: icon('bash'),
+    url: 'https://www.gnu.org/software/bash/manual/bash.html',
+  },
+  {
+    name: 'PowerShell',
+    type: 'Languages',
+    icon: icon('powershell'),
+    url: 'https://www.gnu.org/software/bash/manual/bash.html',
+  },
 
   // Frameworks
   {
@@ -174,6 +186,12 @@ const skills = [
     icon: icon('avaloniaui'),
     url: 'https://avaloniaui.net/',
   },
+  {
+    name: 'Asp.net',
+    type: 'Frameworks',
+    icon: 'https://logodix.com/logo/1796965.png',
+    url: 'https://asp.net',
+  },
 
 
   // Tools
@@ -183,18 +201,18 @@ const skills = [
     icon: icon('git'),
     url: 'https://git-scm.com/',
   },
-  {
-    name: 'GitHub',
-    type: 'Tools',
-    icon: icon('github', 'dark'),
-    url: 'https://github.com/',
-  },
-  {
-    name: 'GitKraken',
-    type: 'Tools',
-    icon: icon('gitkraken'),
-    url: 'https://www.gitkraken.com/',
-  },
+  // {
+  //   name: 'GitHub',
+  //   type: 'Tools',
+  //   icon: icon('github', 'dark'),
+  //   url: 'https://github.com/',
+  // },
+  // {
+  //   name: 'GitKraken',
+  //   type: 'Tools',
+  //   icon: icon('gitkraken'),
+  //   url: 'https://www.gitkraken.com/',
+  // },
   {
     name: 'Docker',
     type: 'Tools',
@@ -202,12 +220,7 @@ const skills = [
     url: 'https://www.docker.com/',
   },
 
-  {
-    name: 'Figma',
-    type: 'Tools',
-    icon: icon('figma'),
-    url: 'https://www.figma.com/',
-  },
+
 
   // Databases
   {
@@ -215,6 +228,13 @@ const skills = [
     type: 'Database',
     icon: icon('mysql', 'wordmark-dark'),
     url: 'https://www.mysql.com/',
+  },
+
+  {
+    name: 'PostgreSQL',
+    type: 'Database',
+    icon: icon('postgresql'),
+    url: 'https://www.postgresql.org/',
   },
   {
     name: 'MongoDB',
